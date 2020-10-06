@@ -6,7 +6,7 @@
 /*   By: gbabeau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 15:39:33 by gbabeau           #+#    #+#             */
-/*   Updated: 2020/10/06 12:45:44 by gbabeau          ###   ########.fr       */
+/*   Updated: 2020/10/06 14:10:59 by smaccary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
-# include "mlx.h"
+# include <mlx.h>
 # include "libft.h"
 
 typedef struct		s_player
@@ -118,6 +118,6 @@ int		ft_printf(const char *str,...);
 int		ft_map(t_deb *deb, char **tab, t_player *player);
 int		ft_strlen_cub(char *str);
 int		ft_error(int a);
-int	ft_bpm(int *data, int resolution[2]);
+int	ft_bpm(char *data, int resolution[2]);
 void	ft_put_m(int a, int b);
 #endif

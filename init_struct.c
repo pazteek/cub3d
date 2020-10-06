@@ -6,7 +6,7 @@
 /*   By: gbabeau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 13:06:13 by gbabeau           #+#    #+#             */
-/*   Updated: 2020/10/06 13:49:50 by gbabeau          ###   ########.fr       */
+/*   Updated: 2020/10/06 14:14:59 by smaccary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ static void ft_put_t(int *a, int b)
 	*a = b;
 }
 
+
+#include <string.h>
 void		init_deb_mlx(t_mlx *mlx,int resolution[2])
 {
 	unsigned int	img_color;
@@ -93,23 +95,24 @@ void		init_deb_mlx(t_mlx *mlx,int resolution[2])
 	//mlx->c_f[1] = img_color;
 	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, resolution[0], resolution[1], "cub3d");
 	mlx->img_ptr = mlx_new_image(mlx->mlx_ptr, resolution[0], resolution[1]);
-	mlx->data = mlx_get_data_addr(mlx->img_ptr, &mlx->bpp,
-	&mlx->sizeline, &mlx->endian);
+	mlx->data = mlx_get_data_addr(mlx->img_ptr, &(mlx->bpp),
+	&(mlx->sizeline), &(mlx->endian));
 
 	i = 0;
 	a = 0;
-	while (i != resolution[1])
-	{
-		while (a != resolution[0])
-		{
-			dst = mlx->data + ((i * (mlx->sizeline) + a * (mlx->bpp / 8)));
-			*(unsigned int*)dst = (0xffff00);
-			a++;
-		}
-		i++;
-		a = 0;
-	}
-	ft_bpm((int*)(mlx->data), resolution);
-	exit(0);
-//	return (0);
+	
+//	while (i != resolution[1])
+//	{
+//		while (a != resolution[0])
+//		{
+//			dst = mlx->data + ((i * (mlx->sizeline) + a * (mlx->bpp / 8)));
+//			*(unsigned int*)dst = 255;
+//			a++;
+//		}
+//		i++;
+//		a = 0;
+//	}
+	//memset(mlx->data, 254, 2000 * 2000 * 4);
+//	ft_bpm((mlx->data), resolution);
+//	exit(0);
 }
