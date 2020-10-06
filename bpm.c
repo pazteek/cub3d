@@ -6,14 +6,16 @@
 
 
 
-static void ft_write_image_bpm(int fd,int *data, int imagesize)
+static void ft_write_image_bpm(int fd,char *data, int imagesize)
 {
 	int i = 0;
 	int a = 24;
 	int b = 1000;
 //	while (i != imagesize )
 //	{
+			printf("imagesize : %d\n", imagesize * 4);
 			write(fd, data, imagesize * 4);
+			
 			//if( i%b ==0)
 			//{
 			//	i += a;
@@ -26,7 +28,7 @@ static void ft_header_bpm(int fd, int resolution[2])
 {
 	int	size = (resolution[0] *resolution[1] * 4) + 54;
 	int	width = resolution[0];
-	int	height = -resolution[1];
+	int	height = resolution[1];
 	int	Reserve = 0;
 	int	offset = 0x36;
 	int headers = 40;
@@ -57,7 +59,7 @@ static void ft_header_bpm(int fd, int resolution[2])
 	write(fd, &color_i, 4);
 }
 
-int	ft_bpm(int *data, int resolution[2])
+int	ft_bpm(char *data, int resolution[2])
 {
 	int	fd;
 //	int resolution[2];

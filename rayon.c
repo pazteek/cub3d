@@ -270,26 +270,26 @@ void		int_strat(t_deb *deb, t_player *player)
 //			printf("%f et %f\n", deb->objet[i][0], deb->objet[i][1]);
 
 	i = 0;
-//	while (rot > player->rot - M_PI / 6)
-//	{
-//			a = int_strat2(yx, rot, deb->map);
-//			printf("%f et %f  \n", yx[0], yx[1]);
-//		if(a != 5)
-//		{
-//			c = 0;
-//		if (a == 1 && a == 3)
-//		affiche_mur(i, deb->dist[i] = sqrt(pow(yx[1] - player->pos_x, 2)
-//		+ pow(yx[0] - player->pos_y, 2)) * fabs(sin((-pas * i) + M_PI / 6)), deb, yx);
-//		else
-//		affiche_mur(i, deb->dist[i] = sqrt(pow(yx[1] - player->pos_x, 2)
-//		+ pow(yx[0] - player->pos_y, 2)) * fabs(cos((-pas * i) + M_PI / 6)), deb, yx);
-//
-//		rot -= pas;
-//		i++;
-//		yx[1] = player->pos_x;
-//		yx[0] = player->pos_y;
-//		}
-//	}
+	while (rot > player->rot - M_PI / 6)
+	{
+			a = int_strat2(yx, rot, deb->map);
+			printf("%f et %f  \n", yx[0], yx[1]);
+		if(a != 5)
+		{
+			c = 0;
+		if (a == 1 && a == 3)
+		affiche_mur(i, deb->dist[i] = sqrt(pow(yx[1] - player->pos_x, 2)
+		+ pow(yx[0] - player->pos_y, 2)) * fabs(sin((-pas * i) + M_PI / 6)), deb, yx);
+		else
+		affiche_mur(i, deb->dist[i] = sqrt(pow(yx[1] - player->pos_x, 2)
+		+ pow(yx[0] - player->pos_y, 2)) * fabs(cos((-pas * i) + M_PI / 6)), deb, yx);
+
+		rot -= pas;
+		i++;
+		yx[1] = player->pos_x;
+		yx[0] = player->pos_y;
+		}
+}
 
 //	init_affiche_objet(deb, player, rot);
 //	pas = (M_PI / 3) / deb->resolution[0];
@@ -297,16 +297,16 @@ void		int_strat(t_deb *deb, t_player *player)
 //	rot = player->rot + M_PI / 6;
 	i = 0;
 	a = 0;
-	while (i != deb->resolution[1])
-	{
-		while (a != deb->resolution[0])
-		{
-		ft_put_t((int*)(&deb->mlx->data[i * deb->mlx->sizeline + a * (deb->mlx->bpp / 8)]),deb->mlx->c_f[1]);
-		a++;
-		}
-		i++;
-		a = 0;
-	}
+//	while (i != deb->resolution[1])
+//	{
+//		while (a != deb->resolution[0])
+//		{
+//		ft_put_t((int*)(&deb->mlx->data[i * deb->mlx->sizeline + a * (deb->mlx->bpp / 8)]),deb->mlx->c_f[1]);
+//		a++;
+//		}
+//		i++;
+//		a = 0;
+//	}
 		mlx_put_image_to_window(deb->mlx->mlx_ptr, deb->mlx->win_ptr,
 			deb->mlx->img_ptr, 0, 0);
 	mlx_do_sync(deb->mlx->mlx_ptr);
