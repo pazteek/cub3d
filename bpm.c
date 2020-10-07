@@ -6,65 +6,56 @@
 
 
 
-static void ft_write_image_bpm(int fd,char *data, int imagesize)
+static void	ft_write_image_bpm(int fd,char *data, int imagesize)
 {
-	int i = 0;
-	int a = 24;
-	int b = 1000;
-//	while (i != imagesize )
-//	{
-			printf("imagesize : %d\n", imagesize * 4);
-			write(fd, data, imagesize * 4);
-			
-			//if( i%b ==0)
-			//{
-			//	i += a;
-			//	b += a;
-			//}
-//	}
+	write(fd, data, imagesize * 4);
 }
 
-static void ft_header_bpm(int fd, int resolution[2])
+
+
+static void init_bmp(t_bmp *bmp,int resolution[2])
 {
-	int	size = (resolution[0] *resolution[1] * 4) + 54;
-	int	width = resolution[0];
-	int	height = resolution[1];
-	int	Reserve = 0;
-	int	offset = 0x36;
-	int headers = 40;
-	int	color = 1;
-	int	bit_pixel = 32;
-	int	compresion = 0;
-	int size_a = resolution[0] *resolution[1] * 4;
-	int	x = 2800;
-	int	y = 2800;
-	int colors = 0;
-	int color_i = 0;
+	bmp->size = (resolution[0] *resolution[1] * 4) + 54;
+	bmp->width = resolution[0];
+	bmp->height = -resolution[1];
+	bmp->Reserve = 0;
+	bmp->offset = 0x36;
+	bmp->headers = 40;
+	bmp->color = 1;
+	bmp->bit_pixel = 32;
+	bmp->compresion = 0;
+	bmp->size_a = resolution[0] *resolution[1] * 4;
+	bmp->x = 2800;
+	bmp->y = 2800;
+	bmp->colors = 0;
+	bmp->color_i = 0;
+}
 
+static void	ft_header_bpm(int fd, int resolution[2])
+{
+	t_bmp bmp;
 
+	init_bmp(&bmp, resolution);
 	write(fd, "BM", 2);
-	write(fd, &size, 4);
-	write(fd, &Reserve, 4);
-	write(fd, &offset, 4);
-	write(fd, &headers, 4);
-	write(fd, &width, 4);
-	write(fd, &height, 4);
-	write(fd, &color, 2);
-	write(fd, &bit_pixel, 2);
-	write(fd, &compresion, 4);
-	write(fd, &size_a, 4);
-	write(fd, &x, 4);
-	write(fd, &y, 4);
-	write(fd, &colors, 4);
-	write(fd, &color_i, 4);
+	write(fd, &bmp.size, 4);
+	write(fd, &bmp.Reserve, 4);
+	write(fd, &bmp.offset, 4);
+	write(fd, &bmp.headers, 4);
+	write(fd, &bmp.width, 4);
+	write(fd, &bmp.height, 4);
+	write(fd, &bmp.color, 2);
+	write(fd, &bmp.bit_pixel, 2);
+	write(fd, &bmp.compresion, 4);
+	write(fd, &bmp.size_a, 4);
+	write(fd, &bmp.x, 4);
+	write(fd, &bmp.y, 4);
+	write(fd, &bmp.colors, 4);
+	write(fd, &bmp.color_i, 4);
 }
 
-int	ft_bpm(char *data, int resolution[2])
+int			ft_bpm(char *data, int resolution[2])
 {
 	int	fd;
-//	int resolution[2];
-//	resolution[0] = deb->resolution[0];
-//	resolution[1] = deb->resolution[1];
 	fd = open("noc.bmp", O_WRONLY | O_CREAT |
 	O_TRUNC, S_IRUSR | S_IWUSR);
 	ft_header_bpm(fd, resolution);

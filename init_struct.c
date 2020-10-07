@@ -6,13 +6,13 @@
 /*   By: gbabeau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 13:06:13 by gbabeau           #+#    #+#             */
-/*   Updated: 2020/10/06 14:14:59 by smaccary         ###   ########.fr       */
+/*   Updated: 2020/10/07 16:18:53 by gbabeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int		player_init(t_player *player, int y, int x, char pos)
+int			player_init(t_player *player, int y, int x, char pos)
 {
 	if (player->pos_x != -1)
 		return (0);
@@ -32,21 +32,21 @@ int		player_init(t_player *player, int y, int x, char pos)
 static int	ini_cub_cub(t_deb *deb, char **tab, int i)
 {
 	if (!ft_strncmp("R", tab[i], 1))
-		return ft_real(&(*deb), tab[i]);
+		return (ft_real(&(*deb), tab[i]));
 	else if (!ft_strncmp("F", tab[i], 1))
 		ft_color_fc(&(*deb), tab[i], 0);
 	else if (!ft_strncmp("C", tab[i], 1))
-		return ft_color_fc(&(*deb), tab[i], 1);
+		return (ft_color_fc(&(*deb), tab[i], 1));
 	else if (!ft_strncmp("NO", tab[i], 2))
-		return ft_textur_wall(&(*deb), tab[i], 0);
+		return (ft_textur_wall(&(*deb), tab[i], 0));
 	else if (!ft_strncmp("EA", tab[i], 2))
-		return ft_textur_wall(&(*deb), tab[i], 1);
+		return (ft_textur_wall(&(*deb), tab[i], 1));
 	else if (!ft_strncmp("SO", tab[i], 2))
-		return ft_textur_wall(&(*deb), tab[i], 2);
+		return (ft_textur_wall(&(*deb), tab[i], 2));
 	else if (!ft_strncmp("WE", tab[i], 2))
-		return ft_textur_wall(&(*deb), tab[i], 3);
+		return (ft_textur_wall(&(*deb), tab[i], 3));
 	else if (!ft_strncmp("S", tab[i], 1))
-		return ft_textur_objet(&(*deb), tab[i]);
+		return (ft_textur_objet(&(*deb), tab[i]));
 	else if (tab[i][0] == '\0')
 		return (0);
 	else
@@ -67,52 +67,25 @@ void		ft_deb(char **tab, t_deb *deb, t_player *player)
 	}
 	if (n == 8)
 		n = ft_map(&(*deb), &tab[i + 1], player);
-	else if (n >= 0 )
+	else if (n >= 0)
 		ft_error(10);
 }
 
-
-static void ft_put_t(int *a, int b)
-{
-	*a = b;
-}
-
-
-#include <string.h>
-void		init_deb_mlx(t_mlx *mlx,int resolution[2])
+void		init_deb_mlx(t_mlx *mlx, int resolution[2])
 {
 	unsigned int	img_color;
 	int				a;
 	int				b;
 	int				c;
 	int				i;
-	char *dst;
-//	char *d;
-	printf("%d et %d\n",resolution[0], resolution[1]);
-	//img_color = mlx_get_color_value(mlx->mlx_ptr, 0xffff00);
-	//mlx->c_f[0] = img_color;
-	//img_color = mlx_get_color_value(mlx->mlx_ptr, 0xff0000);
-	//mlx->c_f[1] = img_color;
-	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, resolution[0], resolution[1], "cub3d");
+
+	img_color = mlx_get_color_value(mlx->mlx_ptr, 0xffff00);
+	mlx->c_f[0] = img_color;
+	img_color = mlx_get_color_value(mlx->mlx_ptr, 0xff0000);
+	mlx->c_f[1] = img_color;
+	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, resolution[0], resolution[1],
+					"cub3d");
 	mlx->img_ptr = mlx_new_image(mlx->mlx_ptr, resolution[0], resolution[1]);
 	mlx->data = mlx_get_data_addr(mlx->img_ptr, &(mlx->bpp),
 	&(mlx->sizeline), &(mlx->endian));
-
-	i = 0;
-	a = 0;
-	
-//	while (i != resolution[1])
-//	{
-//		while (a != resolution[0])
-//		{
-//			dst = mlx->data + ((i * (mlx->sizeline) + a * (mlx->bpp / 8)));
-//			*(unsigned int*)dst = 255;
-//			a++;
-//		}
-//		i++;
-//		a = 0;
-//	}
-	//memset(mlx->data, 254, 2000 * 2000 * 4);
-//	ft_bpm((mlx->data), resolution);
-//	exit(0);
 }
