@@ -1,20 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   isalpha.c                                          :+:      :+:    :+:   */
+/*   ft_end.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gbabeau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/09 12:06:59 by gbabeau           #+#    #+#             */
-/*   Updated: 2020/10/08 13:28:19 by gbabeau          ###   ########.fr       */
+/*   Created: 2020/10/08 16:05:13 by gbabeau           #+#    #+#             */
+/*   Updated: 2020/10/08 16:06:07 by gbabeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "cub3d.h"
+#include "time.h"
 
-int	ft_isalpha(int c)
+static void	ft_free_player(t_player *player)
 {
-	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
-		return (c);
-	return (0);
+	player = 0;
+}
+
+static void	ft_free_all(t_game *game)
+{
+	ft_free_player(game->player);
+	free(game->player);
+	free(game->deb);
+	free(game);
+}
+
+int			ft_end(t_game *game)
+{
+	mlx_destroy_window(game->deb->mlx->mlx_ptr, game->deb->mlx->win_ptr);
+	ft_free_all(game);
+	exit(0);
+	system("leaks ./a.out");
+	return (1);
 }

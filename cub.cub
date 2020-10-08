@@ -1,12 +1,11 @@
-R 2000 2000
-NO ./brick.xpm
-SO ./brick.xpm
-WE ./brick.xpm
-EA ./brick.xpm
-S ./star.xpm
+R 1000 1000
+NO ./textur/brick.xpm
+SO ./textur/brick.xpm
+WE ./textur/brick.xpm
+EA ./textur/brick.xpm
+S ./textur/star.xpm
 F 123,241,0
 C 154,124,255
-
 
 11111111111111111111111111111
 10110020011100000000000010001

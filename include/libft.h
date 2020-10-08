@@ -6,7 +6,7 @@
 /*   By: gbabeau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 20:04:16 by gbabeau           #+#    #+#             */
-/*   Updated: 2020/10/08 15:02:19 by gbabeau          ###   ########.fr       */
+/*   Updated: 2020/02/01 12:12:13 by gbabeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,4 @@ char				*ft_uitoa(unsigned int n);
 char				*ft_ultoa(unsigned long int n);
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void*),
 							void (*del)(void*));
-int	ft_compare_c_to_s(char c, char *str);
-int	ft_compare_s_to_s(char *str_1, char *str_2);
 #endif

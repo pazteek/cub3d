@@ -1,20 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   isalpha.c                                          :+:      :+:    :+:   */
+/*   rot_player.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gbabeau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/09 12:06:59 by gbabeau           #+#    #+#             */
-/*   Updated: 2020/10/08 13:28:19 by gbabeau          ###   ########.fr       */
+/*   Created: 2020/10/08 12:12:09 by gbabeau           #+#    #+#             */
+/*   Updated: 2020/10/08 13:55:48 by gbabeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <cub3d.h>
 
-int	ft_isalpha(int c)
+void		ft_rot_right(t_player *player)
 {
-	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
-		return (c);
-	return (0);
+	player->rot -= M_PI / 25;
+	if (player->rot < 0)
+		player->rot += (2 * M_PI);
+}
+
+void		ft_rot_left(t_player *player)
+{
+	player->rot += M_PI / 25;
+	if (player->rot >= 2 * M_PI)
+		player->rot -= (2 * M_PI);
 }
