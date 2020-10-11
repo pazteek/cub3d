@@ -6,7 +6,7 @@
 /*   By: gbabeau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 12:16:52 by gbabeau           #+#    #+#             */
-/*   Updated: 2020/10/08 16:29:02 by gbabeau          ###   ########.fr       */
+/*   Updated: 2020/10/11 22:03:13 by gbabeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ int		ft_textur_wall(t_deb *deb, char *tab, int dirc)
 			i++;
 		deb->textur[dirc]->name = ft_strdup(&tab[i]);
 		deb->textur[dirc]->img_ptr = mlx_xpm_file_to_image(deb->mlx->mlx_ptr,
-		deb->textur[dirc]->name, &deb->textur[0]->w, &deb->textur[0]->h);
-		deb->textur[dirc]->data = mlx_get_data_addr(deb->textur[0]->img_ptr,
-				&deb->textur[dirc]->bpp, &deb->textur[0]->sizeline,
+		deb->textur[dirc]->name, &deb->textur[dirc]->w, &deb->textur[dirc]->h);
+		deb->textur[dirc]->data = mlx_get_data_addr(deb->textur[dirc]->img_ptr,
+				&deb->textur[dirc]->bpp, &deb->textur[dirc]->sizeline,
 				&deb->textur[dirc]->endian);
 		if (deb->textur[dirc]->data == 0)
 			ft_error(3);

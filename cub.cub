@@ -1,8 +1,8 @@
 R 1000 1000
-NO ./textur/brick.xpm
+NO ./textur/alpha.xpm
 SO ./textur/brick.xpm
-WE ./textur/brick.xpm
-EA ./textur/brick.xpm
+WE ./textur/frensh.xpm
+EA ./textur/ilusion.xpm
 S ./textur/star.xpm
 F 123,241,0
 C 154,124,255

@@ -6,7 +6,7 @@
 /*   By: gbabeau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 16:30:43 by gbabeau           #+#    #+#             */
-/*   Updated: 2020/10/08 16:49:37 by gbabeau          ###   ########.fr       */
+/*   Updated: 2020/10/11 22:04:30 by gbabeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,15 @@ void			int_strat(t_deb *deb, t_player *player)
 	float	yx[2];
 	int		i;
 	float	pas;
-	int		a;
 
 	i = 0;
 	rot = init_int_strat(&pas, yx, player, deb);
-	while (rot > (player->rot - (M_PI / 6)))
+	while (i != deb->resolution[0])
 	{
-		a = int_strat2(yx, rot, deb->map);
-		if (a != 5)
+		deb->wall  = int_strat2(yx, rot, deb->map);
+		if (deb->wall != 5)
 		{
+			deb->wall--;
 			affiche_mur(i, (deb->dist[i] = sqrt(pow(yx[1] - player->pos_x, 2)
 				+ pow(yx[0] - player->pos_y, 2))
 				* cos(-pas * i + M_PI / 6)), deb, yx);
@@ -57,6 +57,7 @@ void			int_strat(t_deb *deb, t_player *player)
 			yx[0] = player->pos_y;
 		}
 	}
+		init_affiche_objet(deb, player, rot);
 	mlx_put_image_to_window(deb->mlx->mlx_ptr, deb->mlx->win_ptr,
 			deb->mlx->img_ptr, 0, 0);
 	mlx_do_sync(deb->mlx->mlx_ptr);

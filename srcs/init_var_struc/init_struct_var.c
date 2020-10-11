@@ -6,7 +6,7 @@
 /*   By: gbabeau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 13:06:13 by gbabeau           #+#    #+#             */
-/*   Updated: 2020/10/08 16:43:50 by gbabeau          ###   ########.fr       */
+/*   Updated: 2020/10/11 22:12:29 by gbabeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ static int	ini_cub_cub(t_deb *deb, char **tab, int i)
 	else if (!ft_strncmp("NO", tab[i], 2))
 		return (ft_textur_wall(&(*deb), tab[i], 0));
 	else if (!ft_strncmp("EA", tab[i], 2))
-		return (ft_textur_wall(&(*deb), tab[i], 1));
+		return (ft_textur_wall(&(*deb), tab[i], 3));
 	else if (!ft_strncmp("SO", tab[i], 2))
 		return (ft_textur_wall(&(*deb), tab[i], 2));
 	else if (!ft_strncmp("WE", tab[i], 2))
-		return (ft_textur_wall(&(*deb), tab[i], 3));
+		return (ft_textur_wall(&(*deb), tab[i], 1));
 	else if (!ft_strncmp("S", tab[i], 1))
 		return (ft_textur_objet(&(*deb), tab[i]));
 	else if (tab[i][0] == '\0')

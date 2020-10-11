@@ -6,7 +6,7 @@
 /*   By: gbabeau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 15:39:33 by gbabeau           #+#    #+#             */
-/*   Updated: 2020/10/08 16:07:12 by gbabeau          ###   ########.fr       */
+/*   Updated: 2020/10/11 22:40:16 by gbabeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ typedef struct		s_deb
 	t_textur		*textur[5];
 	float			**objet;
 	float			*dist;
+	int				wall;
+	int				mov;
 }					t_deb;
 
 typedef struct		s_game
@@ -145,5 +147,7 @@ int	colition_x(t_player *player, float dic, char **map);
 void	ft_pas_wall(float *z, int m[2], int *v, t_deb *deb);
 void	display_fc(float z, t_deb *deb, int m[2], int v);
 void		init_game(t_game *game, char **tab);
-
+void	ft_move_2(void (*f)(t_player*, char**), t_game *game);
+void	ft_move_3(void (*f)(t_player*), t_game *game);
+void		init_affiche_objet(t_deb *deb, t_player *player, float rot);
 #endif
