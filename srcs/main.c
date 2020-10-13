@@ -6,7 +6,7 @@
 /*   By: gbabeau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 16:00:39 by gbabeau           #+#    #+#             */
-/*   Updated: 2020/10/11 22:32:43 by gbabeau          ###   ########.fr       */
+/*   Updated: 2020/10/13 16:26:19 by gbabeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,18 @@ int			main(int argv, char **argc)
 		&& (fd = open(argc[1], O_RDONLY)) >= 0)
 	{
 		init_game(&game, (tab = init_tab(argc[1], fd)));
+		game.deb->mov[0] = 0;
+		game.deb->mov[1] = 0;
+		game.deb->mov[2] = 0;
+		game.deb->mov[3] = 0;
+		game.deb->mov[4] = 0;
+		game.deb->mov[5] = 0;
 		int_strat(game.deb, game.player);
-		mlx_hook(game.deb->mlx->win_ptr, 2, 1L << 1, ft_move, &game);
+		mlx_hook(game.deb->mlx->win_ptr, 2, 0, ft_move_p, &game);
+		mlx_hook(game.deb->mlx->win_ptr, 3, 0, ft_move_r, &game);
 		if (argv == 3)
 			ft_bmp((game.deb->mlx->data), game.deb->resolution);
+		mlx_loop_hook(game.deb->mlx->mlx_ptr,&ft_move, &game);
 		mlx_loop(game.deb->mlx->mlx_ptr);
 	}
 	return (0);

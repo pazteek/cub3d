@@ -6,7 +6,7 @@
 /*   By: gbabeau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 15:39:33 by gbabeau           #+#    #+#             */
-/*   Updated: 2020/10/11 22:40:16 by gbabeau          ###   ########.fr       */
+/*   Updated: 2020/10/13 14:27:33 by gbabeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ typedef struct		s_deb
 	float			**objet;
 	float			*dist;
 	int				wall;
-	int				mov;
+	char			mov[6];
 }					t_deb;
 
 typedef struct		s_game
@@ -114,7 +114,7 @@ int		ft_real(t_deb *deb, char *tab);
 int		ft_color_fc(t_deb *deb, char *tab, int fc);
 int		ft_textur_wall(t_deb *deb, char *tab, int dirc);
 int		ft_textur_objet(t_deb *deb, char *tab);
-int		ft_move(int key, t_game *game);
+int		ft_move(t_game *game);
 int		rayon_y(float yx[2], float delt[2], float n_t[2], char **map);
 int		rayon_x(float yx[2], float delt[2], float n_t[2], char **map);
 void	int_strat(t_deb *deb, t_player *player);
@@ -150,4 +150,7 @@ void		init_game(t_game *game, char **tab);
 void	ft_move_2(void (*f)(t_player*, char**), t_game *game);
 void	ft_move_3(void (*f)(t_player*), t_game *game);
 void		init_affiche_objet(t_deb *deb, t_player *player, float rot);
+int		ft_move_p(int key, t_game *game);
+int		ft_move_r(int key, t_game *game);
+
 #endif

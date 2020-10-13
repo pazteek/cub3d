@@ -6,7 +6,7 @@
 /*   By: gbabeau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 13:00:57 by gbabeau           #+#    #+#             */
-/*   Updated: 2020/10/08 16:48:38 by gbabeau          ###   ########.fr       */
+/*   Updated: 2020/10/13 17:10:50 by gbabeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,10 @@ float	**ft_tab_objet(int nbr_objet, char **map)
 	{
 		if (map[y][++x] == '2')
 		{
-			objet[nbr_objet - 1] = malloc(sizeof(float) * 2);
+			objet[nbr_objet - 1] = malloc(sizeof(float) * 3);
 			objet[nbr_objet - 1][0] = y + 0.5;
 			objet[nbr_objet - 1][1] = x + 0.5;
+			objet[nbr_objet - 1][2] = 0;
 			nbr_objet--;
 		}
 		else if (map[y][x] == '\0')
