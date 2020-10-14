@@ -6,7 +6,7 @@
 /*   By: gbabeau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 15:32:32 by gbabeau           #+#    #+#             */
-/*   Updated: 2020/10/13 13:29:26 by gbabeau          ###   ########.fr       */
+/*   Updated: 2020/10/14 12:57:13 by gbabeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int				ft_move_p(int key, t_game *game)
 	if (key == 1)
 			game->deb->mov[2] = '1';
 	if (key == 2)
-			game->deb->mov[3] += '1';
+			game->deb->mov[3] = '1';
 	if (key == 123)
 			game->deb->mov[4] = '1';
 	if (key == 124)
@@ -68,27 +68,27 @@ int			ft_move(t_game *game)
 {
 	int a;
 	a = 0;
-	if (game->deb->mov[a++]== '1')
+	if (game->deb->mov[a++] == '1')
 	{
 		ft_move_2(ft_move_front, &(*game));
 	}
-	if (game->deb->mov[a++]== '1')
+	if (game->deb->mov[a++] == '1')
 	{
 		ft_move_2(ft_move_left, &(*game));
 	}
-	if (game->deb->mov[a++]== '1')
+	if (game->deb->mov[a++] == '1')
 	{
 		ft_move_2(ft_move_back, &(*game));
 	}
-	if (game->deb->mov[a++]== '1')
+	if (game->deb->mov[a++] == '1')
 	{
 		ft_move_2(ft_move_right, &(*game));
 	}
-	if (game->deb->mov[a++]== '1')
+	if (game->deb->mov[a++] == '1')
 	{
 		ft_move_3(ft_rot_left, &(*game));
 	}
-	if (game->deb->mov[a++]== '1')
+	if (game->deb->mov[a++] == '1')
 	{
 		ft_move_3(ft_rot_right, &(*game));
 	}

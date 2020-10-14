@@ -6,7 +6,7 @@
 /*   By: gbabeau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 13:06:13 by gbabeau           #+#    #+#             */
-/*   Updated: 2020/10/13 14:27:54 by gbabeau          ###   ########.fr       */
+/*   Updated: 2020/10/14 17:47:12 by gbabeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,6 @@ void		ft_deb(char **tab, t_deb *deb, t_player *player)
 
 void		init_deb_mlx(t_mlx *mlx, int resolution[2])
 {
-	unsigned int	img_color;
-
-	img_color = mlx_get_color_value(mlx->mlx_ptr, 0xffff00);
-	mlx->c_f[0] = img_color;
-	img_color = mlx_get_color_value(mlx->mlx_ptr, 0xff0000);
-	mlx->c_f[1] = img_color;
 	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, resolution[0], resolution[1],
 					"cub3d");
 	mlx->img_ptr = mlx_new_image(mlx->mlx_ptr, resolution[0], resolution[1]);

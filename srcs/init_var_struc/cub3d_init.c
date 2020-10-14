@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+/**************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   cub3d_init.c                                       :+:      :+:    :+:   */
@@ -6,11 +6,12 @@
 /*   By: gbabeau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 12:58:38 by gbabeau           #+#    #+#             */
-/*   Updated: 2020/10/08 16:47:36 by gbabeau          ###   ########.fr       */
+/*   Updated: 2020/10/14 18:02:25 by gbabeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "stdio.h"
 
 int		ft_real(t_deb *deb, char *tab)
 {
@@ -46,10 +47,11 @@ int		ft_color_fc(t_deb *deb, char *tab, int fc)
 	int n;
 	int i;
 	int a;
+	int img_color;
 
 	n = 0;
 	i = 2;
-	(void)deb;
+	img_color = 0;
 	if (tab[1] == ' ')
 		while (tab[i] != '\0')
 		{
@@ -59,15 +61,17 @@ int		ft_color_fc(t_deb *deb, char *tab, int fc)
 			i--;
 			if (a <= 3 && (tab[i] == ',' || tab[i] == '\0'))
 			{
-				if (255 < ft_atoi(&tab[i - a]))
+				if (ft_atoi(&tab[i - a]) > 255)
 					return (ft_error(7));
+				printf("%d\n",ft_atoi(&tab[i - a]));
+				img_color += ft_atoi(&tab[i - a]) * pow(256, 3 - n);
 				if ((tab[i] == '\0' && n != 2) || tab[i++] != ',')
 					return (ft_error(7));
-				while (tab[i] != ' ' && tab[i] != '\0')
-					i++;
+				n++;
 			}
 			else
 				ft_error(fc);
 		}
+	deb->mlx->c_f[fc] = mlx_get_color_value(deb->mlx->mlx_ptr, img_color);
 	return (1);
 }

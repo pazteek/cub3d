@@ -6,7 +6,7 @@
 /*   By: gbabeau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 12:10:03 by gbabeau           #+#    #+#             */
-/*   Updated: 2020/10/13 17:26:20 by gbabeau          ###   ########.fr       */
+/*   Updated: 2020/10/14 16:07:56 by gbabeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,17 +51,23 @@ static void display_wall(int i, float rot, t_deb *deb, t_player *player)
 	x = display_wall_init(&dist, i, player, deb);
 	while (++x != deb->resolution[0])
 	{
-		if (deb->dist[x] > dist)
+		if (deb->dist[x]  > dist)
 		{
 			angle = (rot + M_PI / 6 - (x * (M_PI / 3) / deb->resolution[0]));
 			a = display_2(deb, player, i);
 			dist_2 = dist * tanf(a = (a - angle));
-			if (a < M_PI / 6 && a > (-M_PI / 6))
+			if (a > M_PI)
+				a -= 2 * M_PI;
+			else if (a < -M_PI)
+				a += 2 * M_PI;
+//			dist = sqrt(dist_2 * dist_2 + dist * dist);
+			if (a < M_PI / 3 && a > (-M_PI / 3))
 			{
 				affiche_objet(x, dist, deb, dist_2);
 				deb->dist[x] = dist;
 			}
-		}
+		} else if(x > 800)
+		printf("%f vs %f %d\n",dist, deb->dist[x], x);
 	}
 }
 
@@ -115,11 +121,6 @@ void		init_affiche_objet(t_deb *deb, t_player *player, float rot)
 	i = -1;
 	a = -1;
 	orde_sprite(deb, player);
-//	printf("%d et %d\n",(int)(deb->objet[0][2]),(int)(deb->objet[1][2]));
-//	printf("%f et %f",sqrt(pow((deb->objet[0][1] - player->pos_x), 2) +
-//			pow((deb->objet[0][0] - player->pos_y), 2)),sqrt(pow((deb->objet[1][1] - player->pos_x), 2) +
-//			pow((deb->objet[1][0] - player->pos_y), 2)));
-
 	while (deb->objet[++i] != NULL)
 	{
 		while (deb->objet[++a] != NULL)

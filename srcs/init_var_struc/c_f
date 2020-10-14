@@ -1,0 +1,14 @@
+init_struct_var.c:	img_color = mlx_get_color_value(mlx->mlx_ptr, mlx->c_f[0]);
+init_struct_var.c:	mlx->c_f[0] = img_color;
+init_struct_var.c:	img_color = mlx_get_color_value(mlx->mlx_ptr, mlx->c_f[1]);
+init_struct_var.c:	mlx->c_f[1] = img_color;
+init_struct_var.c:	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, resolution[0], resolution[1],
+init_struct_var.c:	mlx->img_ptr = mlx_new_image(mlx->mlx_ptr, resolution[0], resolution[1]);
+init_struct_var.c:	mlx->data = mlx_get_data_addr(mlx->img_ptr, &(mlx->bpp),
+init_struct_var.c:	&(mlx->sizeline), &(mlx->endian));
+init_textur.c:		deb->textur[dirc]->img_ptr = mlx_xpm_file_to_image(deb->mlx->mlx_ptr,
+init_textur.c:	deb->textur[4]->img_ptr = mlx_xpm_file_to_image(deb->mlx->mlx_ptr,
+init_textur.c:	img_color = mlx_get_color_value(deb->mlx->mlx_ptr, 0xffff00);
+init_textur.c:	deb->mlx->c_f[0] = img_color;
+init_textur.c:	img_color = mlx_get_color_value(deb->mlx->mlx_ptr, 0xff0000);
+init_textur.c:	deb->mlx->c_f[1] = img_color;

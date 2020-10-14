@@ -6,7 +6,7 @@
 /*   By: gbabeau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 16:30:43 by gbabeau           #+#    #+#             */
-/*   Updated: 2020/10/13 14:00:03 by gbabeau          ###   ########.fr       */
+/*   Updated: 2020/10/14 17:34:17 by gbabeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ static float	init_int_strat(float *pas, float yx[2],
 	return (play->rot + M_PI / 6);
 }
 
+
 void			int_strat(t_deb *deb, t_player *player)
 {
 	float	rot;
@@ -48,9 +49,9 @@ void			int_strat(t_deb *deb, t_player *player)
 		if (deb->wall != 5)
 		{
 			deb->wall--;
-			affiche_mur(i, (deb->dist[i] = sqrt(pow(yx[1] - player->pos_x, 2)
-				+ pow(yx[0] - player->pos_y, 2))
-				* cos(-pas * i + M_PI / 6)), deb, yx);
+			deb->dist[i] = sqrt(pow((yx[1] - player->pos_x), 2)
+				+ pow((yx[0] - player->pos_y), 2));
+			affiche_mur(i, deb->dist[i] * cos(M_PI/6 - i * pas), deb, yx);
 			rot -= pas;
 			i++;
 			yx[1] = player->pos_x;
