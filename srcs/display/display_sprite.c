@@ -6,7 +6,7 @@
 /*   By: gbabeau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 12:10:03 by gbabeau           #+#    #+#             */
-/*   Updated: 2020/10/14 16:07:56 by gbabeau          ###   ########.fr       */
+/*   Updated: 2020/10/15 17:57:31 by gbabeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,129 +14,12 @@
 #include <stdio.h>
 #include <math.h>
 
-static float display_2(t_deb *deb, t_player *player, int i)
-{
-float a;
-
-				if ((deb->objet[i][0] - player->pos_y) > 0)
-					a = atanf((deb->objet[i][1] - player->pos_x) /
-					(deb->objet[i][0] - player->pos_y)) + M_PI;
-				else
-					a = atanf((deb->objet[i][1] - player->pos_x) /
-					(deb->objet[i][0] - player->pos_y));
-				if (a > M_PI)
-					return (a - 2 * M_PI);
-				else if (a < (-M_PI))
-					return (a + 2 * M_PI);
-				return a;
-}
-
-static int display_wall_init(float *dist, int i, t_player *player, t_deb *deb)
-{
-
-		*dist = sqrt(pow((deb->objet[i][1] - player->pos_x), 2) +
-		pow((deb->objet[i][0] - player->pos_y), 2));
-		return (-1);
-
-}
-
-static void display_wall(int i, float rot, t_deb *deb, t_player *player)
-{
-	float	dist;
-	float	dist_2;
-	int		x;
-	float	a;
-	float angle;
-
-	x = display_wall_init(&dist, i, player, deb);
-	while (++x != deb->resolution[0])
-	{
-		if (deb->dist[x]  > dist)
-		{
-			angle = (rot + M_PI / 6 - (x * (M_PI / 3) / deb->resolution[0]));
-			a = display_2(deb, player, i);
-			dist_2 = dist * tanf(a = (a - angle));
-			if (a > M_PI)
-				a -= 2 * M_PI;
-			else if (a < -M_PI)
-				a += 2 * M_PI;
-//			dist = sqrt(dist_2 * dist_2 + dist * dist);
-			if (a < M_PI / 3 && a > (-M_PI / 3))
-			{
-				affiche_objet(x, dist, deb, dist_2);
-				deb->dist[x] = dist;
-			}
-		} else if(x > 800)
-		printf("%f vs %f %d\n",dist, deb->dist[x], x);
-	}
-}
-
-
-
-int	orde_sprite(t_deb *deb, t_player *player)
-{
-	int i;
-	int	n;
-	int a;
-
-	i = -1;
-	while(deb->objet[++i] != 0)
-			deb->objet[i][2] = 0;
-	i = -1;
-	while(deb->objet[++i] != 0)
-	{
-		n = 1;
-		a = -1;
-
-		while (deb->objet[++a] != 0)
-			if (sqrt(pow((deb->objet[i][1] - player->pos_x), 2) +
-			pow((deb->objet[i][0] - player->pos_y), 2)) < (sqrt(pow((deb->objet[a][1] - player->pos_x), 2) +
-				pow((deb->objet[a][0] - player->pos_y), 2))))
-			{
-			//	printf("[%d] [%d]\n",i, a);
-				n++;
-			}
-		a = -1;
-		while (deb->objet[++a] != 0)
-			if (a != i && deb->objet[a][2] == n)
-			{
-			//	write(1,"a",1);
-			n++;
-			}
-		deb->objet[i][2] = n;
-	}
-	return 0;
-}
-
-void		init_affiche_objet(t_deb *deb, t_player *player, float rot)
-{
-	int		i;
-	int		a;
-
-	if (player->rot > M_PI)
-		rot = player->rot - 2 * M_PI;
-	else
-		rot = player->rot;
-
-	i = -1;
-	a = -1;
-	orde_sprite(deb, player);
-	while (deb->objet[++i] != NULL)
-	{
-		while (deb->objet[++a] != NULL)
-			if (deb->objet[a][2] == (i + 1))
-			display_wall(a, rot, deb, player);
-		a = -1;
-//		printf("%d \n",i);
-	}
-}
-
-static void	ft_bgr(int *datas, int *data)
+static void			ft_bgr(int *datas, int *data)
 {
 	*datas = *data;
 }
 
-static void	ft_pas_objet(float *z, int m[2], int *v, t_deb *deb)
+static void			ft_pas_objet(float *z, int m[2], int *v, t_deb *deb)
 {
 	*z += M_PI / (4 * deb->resolution[1]);
 	m[0] += deb->mlx->sizeline;
@@ -144,7 +27,7 @@ static void	ft_pas_objet(float *z, int m[2], int *v, t_deb *deb)
 	*v += 1;
 }
 
-static int	init_var_objet(float dist_2, int o[2], int i, t_deb *deb)
+static int			init_var_objet(float dist_2, int o[2], int i, t_deb *deb)
 {
 	float	z;
 
@@ -156,12 +39,12 @@ static int	init_var_objet(float dist_2, int o[2], int i, t_deb *deb)
 			+ i * deb->mlx->bpp / 8);
 }
 
-static int init_var_objet_2(float *z, float *t, float r, t_deb *deb)
+static int			init_var_objet_2(float *z, float *t, float r, t_deb *deb)
 {
-	int v;
+	int		v;
 
 	*t = atanf(0.3 / r);
-	*z = atanf(0.20 / r);
+	*z = atanf(0.10 / r);
 	if (*t > M_PI / 6)
 		*t = M_PI / 6;
 	v = (int)(((*t / (M_PI / 6)) * (deb->resolution[0] / 2)) - 1);
@@ -170,7 +53,7 @@ static int init_var_objet_2(float *z, float *t, float r, t_deb *deb)
 	return (v);
 }
 
-void		affiche_objet(int i, float r, t_deb *deb, float dist_2)
+void				affiche_objet(int i, float r, t_deb *deb, float dist_2)
 {
 	int		v;
 	float	z;
@@ -178,18 +61,17 @@ void		affiche_objet(int i, float r, t_deb *deb, float dist_2)
 	int		o[3];
 	int		m[2];
 
-
 	v = init_var_objet_2(&z, &t, r, deb);
 	m[0] = init_var_objet(dist_2, o, i, deb);
 	m[1] = m[0] + (v * deb->mlx->sizeline);
 	while (m[0] != -1 && t > z)
 	{
-		o[2] = (int)(((1 - ((z - atanf(0.20 / r)) / (t - atanf(0.20 / r))))
-		* deb->textur[4]->h));
+		o[2] = (int)(((1 - ((z - atanf(0.10 / r)) / (t - atanf(0.10 / r))))
+					* deb->textur[4]->h));
 		o[0] = o[2] * deb->textur[4]->sizeline + o[1];
-	if (o[2] != deb->textur[4]->h && deb->textur[4]->data[o[0]+3] == 0)
-		ft_bgr((int*)(&deb->mlx->data[m[1]]),
-			(int*)(&deb->textur[4]->data[o[0]]));
+		if (o[2] != deb->textur[4]->h && deb->textur[4]->data[o[0] + 3] == 0)
+			ft_bgr((int*)(&deb->mlx->data[m[1]]),
+					(int*)(&deb->textur[4]->data[o[0]]));
 		ft_pas_objet(&z, m, &v, deb);
 	}
 }

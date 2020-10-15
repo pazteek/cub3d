@@ -6,7 +6,7 @@
 /*   By: gbabeau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 16:00:39 by gbabeau           #+#    #+#             */
-/*   Updated: 2020/10/13 16:26:19 by gbabeau          ###   ########.fr       */
+/*   Updated: 2020/10/15 19:55:27 by gbabeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int			ft_map(t_deb *deb, char **tab, t_player *player)
 	i = 0;
 	ft_transition(tab, &(*deb));
 	ft_map_check(&(*deb), player);
+//	ft_free_tab((void **)tab);
 	return (0);
 }
 
@@ -49,24 +50,29 @@ int			main(int argv, char **argc)
 	int		fd;
 	char	**tab;
 	t_game	game;
-
-	if (!ft_strncmp(&argc[1][ft_strlen(argc[1]) - 4], ".cub", 4)
-		&& (fd = open(argc[1], O_RDONLY)) >= 0)
+	if (argv == 2 || argv==3)
 	{
-		init_game(&game, (tab = init_tab(argc[1], fd)));
-		game.deb->mov[0] = 0;
-		game.deb->mov[1] = 0;
-		game.deb->mov[2] = 0;
-		game.deb->mov[3] = 0;
-		game.deb->mov[4] = 0;
-		game.deb->mov[5] = 0;
-		int_strat(game.deb, game.player);
-		mlx_hook(game.deb->mlx->win_ptr, 2, 0, ft_move_p, &game);
-		mlx_hook(game.deb->mlx->win_ptr, 3, 0, ft_move_r, &game);
-		if (argv == 3)
-			ft_bmp((game.deb->mlx->data), game.deb->resolution);
-		mlx_loop_hook(game.deb->mlx->mlx_ptr,&ft_move, &game);
-		mlx_loop(game.deb->mlx->mlx_ptr);
+		if (!ft_strncmp(&argc[1][ft_strlen(argc[1]) - 4], ".cub", 4)
+		&& (fd = open(argc[1], O_RDONLY)) >= 0)
+		{
+			init_game(&game, (tab = init_tab(argc[1], fd)));
+			int_strat(game.deb, game.player);
+			if (argv == 3)
+			{
+				if (!ft_strncmp(argc[2], "--save",6))
+					ft_bmp((game.deb->mlx->data), game.deb->resolution, game);
+				 else
+					ft_error(0);
+			}
+			mlx_hook(game.deb->mlx->win_ptr, 2, 0, ft_move_p, &game);
+			mlx_hook(game.deb->mlx->win_ptr, 3, 0, ft_move_r, &game);
+			mlx_loop_hook(game.deb->mlx->mlx_ptr, &ft_move, &game);
+			mlx_loop(game.deb->mlx->mlx_ptr);
+		}
+		else
+			ft_error(0);
 	}
+	else
+		ft_error(0);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: gbabeau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 13:00:57 by gbabeau           #+#    #+#             */
-/*   Updated: 2020/10/13 17:10:50 by gbabeau          ###   ########.fr       */
+/*   Updated: 2020/10/15 19:57:18 by gbabeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,15 @@ float	**ft_tab_objet(int nbr_objet, char **map)
 
 	y = 0;
 	x = -1;
-	objet = malloc(sizeof(float*) * (nbr_objet + 1));
+	if (!(objet = malloc(sizeof(float*) * (nbr_objet + 1))))
+		return (0);
 	objet[nbr_objet] = NULL;
 	while (0 != nbr_objet && map[y] != NULL)
 	{
 		if (map[y][++x] == '2')
 		{
-			objet[nbr_objet - 1] = malloc(sizeof(float) * 3);
+			if (!(objet[nbr_objet - 1] = malloc(sizeof(float) * 3)))
+				return (NULL);
 			objet[nbr_objet - 1][0] = y + 0.5;
 			objet[nbr_objet - 1][1] = x + 0.5;
 			objet[nbr_objet - 1][2] = 0;
@@ -82,7 +84,8 @@ char	**ft_malloc_struc_map(char **tab)
 		y++;
 	if (tab[i] != 0 && tab[i + 1] != 0)
 		ft_error(2);
-	map = malloc(sizeof(char*) * (y + 1));
+	if (!(map = malloc(sizeof(char*) * (y + 1))))
+		return (NULL);
 	map[y] = 0;
 	y = 0;
 	i = -1;
@@ -117,6 +120,7 @@ void	ft_transition(char **tab, t_deb *deb)
 			if ((deb->map[i][x] = tab[i][x]) == '2')
 				objet++;
 		deb->map[i][x] = '\0';
+		free(tab[i]);
 		x = -1;
 		i++;
 	}

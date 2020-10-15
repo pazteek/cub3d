@@ -6,7 +6,7 @@
 /*   By: gbabeau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 12:03:06 by gbabeau           #+#    #+#             */
-/*   Updated: 2020/10/08 13:30:38 by gbabeau          ###   ########.fr       */
+/*   Updated: 2020/10/15 18:15:00 by gbabeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	init_bmp(t_bmp *bmp, int resolution[2])
 	bmp->size = (resolution[0] * resolution[1] * 4) + 54;
 	bmp->width = resolution[0];
 	bmp->height = -resolution[1];
-	bmp->Reserve = 0;
+	bmp->reserve = 0;
 	bmp->offset = 0x36;
 	bmp->headers = 40;
 	bmp->color = 1;
@@ -46,7 +46,7 @@ static void	ft_header_bmp(int fd, int resolution[2])
 	init_bmp(&bmp, resolution);
 	write(fd, "BM", 2);
 	write(fd, &bmp.size, 4);
-	write(fd, &bmp.Reserve, 4);
+	write(fd, &bmp.reserve, 4);
 	write(fd, &bmp.offset, 4);
 	write(fd, &bmp.headers, 4);
 	write(fd, &bmp.width, 4);
@@ -61,7 +61,7 @@ static void	ft_header_bmp(int fd, int resolution[2])
 	write(fd, &bmp.color_i, 4);
 }
 
-int			ft_bmp(char *data, int resolution[2])
+int			ft_bmp(char *data, int resolution[2], t_game game)
 {
 	int	fd;
 
@@ -69,5 +69,6 @@ int			ft_bmp(char *data, int resolution[2])
 	O_TRUNC, S_IRUSR | S_IWUSR);
 	ft_header_bmp(fd, resolution);
 	ft_write_image_bmp(fd, data, resolution[0] * resolution[1]);
+	ft_end(&game);
 	return (0);
 }

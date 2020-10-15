@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display_fc.c                                       :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gbabeau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/07 12:18:42 by gbabeau           #+#    #+#             */
-/*   Updated: 2020/10/15 15:12:26 by gbabeau          ###   ########.fr       */
+/*   Created: 2020/10/15 18:42:55 by gbabeau           #+#    #+#             */
+/*   Updated: 2020/10/15 19:24:37 by gbabeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include <stdio.h>
-#include <math.h>
 
-static void	ft_bgr(int *datas, int *data)
+void ft_free_tab(void **tab)
 {
-	*datas = *data;
-}
+	int	a;
 
-void		display_fc(float z, t_deb *deb, int m[2], int v)
-{
-	while (z && v <= (deb->resolution[1] / 2))
+	a = 0;
+	while(tab[a] != NULL)
 	{
-		if (v != (deb->resolution[1] / 2))
-			ft_bgr((int*)(&deb->mlx->data[m[0]]),
-					(int*)(&deb->mlx->c_f[0]));
-		ft_bgr((int*)(&deb->mlx->data[m[1]]),
-				(int*)((&deb->mlx->c_f[1])));
-		ft_pas_wall(&z, m, &v, deb);
+		free(tab[a]);
+		tab[a] = 0;
+		a++;
 	}
+	free(tab);
+	tab = 0;
 }

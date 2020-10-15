@@ -6,32 +6,32 @@
 /*   By: gbabeau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 16:03:11 by gbabeau           #+#    #+#             */
-/*   Updated: 2020/10/08 16:06:52 by gbabeau          ###   ########.fr       */
+/*   Updated: 2020/10/15 18:52:37 by gbabeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "time.h"
 
-void		init_deb(t_deb *deb, char **tab, t_player *player)
+int		init_deb(t_deb *deb, char **tab, t_game *game)
 {
 	t_mlx		*mlx;
 	t_textur	*textur[5];
-	float		*dist;
 	int			i;
 
 	i = -1;
-	mlx = malloc(sizeof(t_mlx));
+	if(!(mlx = malloc(sizeof(t_mlx))))
+		return (0);
 	deb->mlx = mlx;
 	while (++i != 5)
 	{
-		textur[i] = malloc(sizeof(t_textur));
+		if(!(textur[i] = malloc(sizeof(t_textur))))
+			return (0);
 		deb->textur[i] = textur[i];
 	}
-	dist = malloc(sizeof(float) * 10000);
-	deb->dist = dist;
 	deb->mlx->mlx_ptr = mlx_init();
-	ft_deb(tab, deb, player);
+	ft_deb(tab, game);
+	return (1);
 }
 
 void		init_game(t_game *game, char **tab)
@@ -43,6 +43,12 @@ void		init_game(t_game *game, char **tab)
 	player = malloc(sizeof(t_player));
 	player->pos_x = -1;
 	game->deb = deb;
+	deb->mov[0] = 0;
+	deb->mov[1] = 0;
+	deb->mov[2] = 0;
+	deb->mov[3] = 0;
+	deb->mov[4] = 0;
+	deb->mov[5] = 0;
 	game->player = player;
-	init_deb(game->deb, tab, game->player);
+	init_deb(game->deb, tab, game);
 }

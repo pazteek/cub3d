@@ -4,8 +4,8 @@ SO ./textur/brick.xpm
 WE ./textur/frensh.xpm
 EA ./textur/ilusion.xpm
 S ./textur/star.xpm
-F 0,0,0
-C 0,255,255
+F 255,0,0
+C 0,255,0
 
 11111111111111111111111111111
 10110020011100000000000010001
