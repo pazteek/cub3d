@@ -6,7 +6,7 @@
 /*   By: gbabeau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 15:32:32 by gbabeau           #+#    #+#             */
-/*   Updated: 2020/10/15 16:25:46 by gbabeau          ###   ########.fr       */
+/*   Updated: 2020/10/16 16:22:04 by gbabeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,20 +64,17 @@ int		ft_move_r(int key, t_game *game)
 
 int		ft_move(t_game *game)
 {
-	int a;
-
-	a = 0;
-	if (game->deb->mov[a++] == '1')
+	if (game->deb->mov[0] == '1')
 		ft_move_2(ft_move_front, &(*game));
-	if (game->deb->mov[a++] == '1')
+	if (game->deb->mov[1] == '1')
 		ft_move_2(ft_move_left, &(*game));
-	if (game->deb->mov[a++] == '1')
+	if (game->deb->mov[2] == '1')
 		ft_move_2(ft_move_back, &(*game));
-	if (game->deb->mov[a++] == '1')
+	if (game->deb->mov[3] == '1')
 		ft_move_2(ft_move_right, &(*game));
-	if (game->deb->mov[a++] == '1')
+	if (game->deb->mov[4] == '1' && game->deb->mov[5] != '1')
 		ft_move_3(ft_rot_left, &(*game));
-	if (game->deb->mov[a++] == '1')
+	if (game->deb->mov[5] == '1' && game->deb->mov[4] != '1')
 		ft_move_3(ft_rot_right, &(*game));
 	int_strat(game->deb, game->player);
 	return (0);
