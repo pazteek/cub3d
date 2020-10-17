@@ -6,18 +6,18 @@
 /*   By: gbabeau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 18:42:55 by gbabeau           #+#    #+#             */
-/*   Updated: 2020/10/15 19:24:37 by gbabeau          ###   ########.fr       */
+/*   Updated: 2020/10/17 13:02:01 by gbabeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void ft_free_tab(void **tab)
+void	ft_free_tab(void **tab)
 {
 	int	a;
 
 	a = 0;
-	while(tab[a] != NULL)
+	while (tab[a] != NULL)
 	{
 		free(tab[a]);
 		tab[a] = 0;

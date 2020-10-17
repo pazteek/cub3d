@@ -6,7 +6,7 @@
 /*   By: gbabeau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 12:03:06 by gbabeau           #+#    #+#             */
-/*   Updated: 2020/10/15 18:15:00 by gbabeau          ###   ########.fr       */
+/*   Updated: 2020/10/17 17:26:56 by gbabeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,12 @@ int			ft_bmp(char *data, int resolution[2], t_game game)
 	ft_write_image_bmp(fd, data, resolution[0] * resolution[1]);
 	ft_end(&game);
 	return (0);
+}
+
+void		ft_check_bmp(char *argc, t_game game)
+{
+	if (!ft_strncmp(argc, "--save", 6))
+		ft_bmp((game.deb->mlx->data), game.deb->resolution, game);
+	else
+		ft_error(15, game);
 }

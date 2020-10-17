@@ -6,7 +6,7 @@
 /*   By: gbabeau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 12:01:26 by gbabeau           #+#    #+#             */
-/*   Updated: 2020/10/16 18:02:14 by gbabeau          ###   ########.fr       */
+/*   Updated: 2020/10/17 12:59:18 by gbabeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,27 +39,20 @@ void		ft_pas_wall(float *z, int m[2], int *v, t_deb *deb)
 	*v += 1;
 }
 
-//float ft_cal(float r,  float z_t[2])
-//{
-//	if ((r= (r - 0.1 / cos(z_t[0]))) < 0)
-//	return (0);
-//	return r;
-//}
 void		affiche_mur(int i, float r, t_deb *deb, float *yx)
 {
 	int		v;
-	float	z_t[2];
+	float	z;
 	int		o[3];
 	int		m[2];
 
-	z_t[1] = atan(0.6 / r);
-	z_t[0] = 0;
+	z = 0;
 	v = 0;
 	m[0] = init_var_affiche_mur(yx, o, i, deb);
 	m[1] = m[0];
-	while ((0.5 > ((sin(z_t[0]) * r) / 0.4)) && v <= (deb->resolution[1] / 2))
+	while ((0.5 > ((tan(z) * r) / 0.4)) && v <= (deb->resolution[1] / 2))
 	{
-		o[2] = (int)((((sin(z_t[0]) * r) / 0.4) * deb->textur[deb->wall]->h));
+		o[2] = (int)((((tan(z) * r) / 0.4) * deb->textur[deb->wall]->h));
 		o[0] = (o[2] + (deb->textur[deb->wall]->h / 2))
 			* deb->textur[deb->wall]->sizeline + o[1];
 		if (v != deb->resolution[1] / 2)
@@ -69,8 +62,7 @@ void		affiche_mur(int i, float r, t_deb *deb, float *yx)
 			* deb->textur[deb->wall]->sizeline + o[1];
 		ft_bgr((int*)(&deb->mlx->data[m[1]]),
 				(int*)(&deb->textur[deb->wall]->data[o[0]]));
-		ft_pas_wall(&z_t[0], m, &v, deb);
-
+		ft_pas_wall(&z, m, &v, deb);
 	}
-	display_fc(z_t[0], deb, m, v);
+	display_fc(z, deb, m, v);
 }

@@ -6,22 +6,21 @@
 /*   By: gbabeau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 16:00:39 by gbabeau           #+#    #+#             */
-/*   Updated: 2020/10/16 10:39:31 by gbabeau          ###   ########.fr       */
+/*   Updated: 2020/10/17 17:29:24 by gbabeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "time.h"
+#include "stdio.h"
 
 int			ft_map(t_deb *deb, char **tab, t_player *player)
 {
 	int	i;
 
-	tab = ft_malloc_struc_map(tab);
 	i = 0;
 	ft_transition(tab, &(*deb));
 	ft_map_check(&(*deb), player);
-//	ft_free_tab((void **)tab);
 	return (0);
 }
 
@@ -45,34 +44,38 @@ char		**init_tab(char *argc, int fd)
 	return (tri(c));
 }
 
+void		ft_mlx_hook(t_game game)
+{
+	mlx_hook(game.deb->mlx->win_ptr, 2, 0, ft_move_p, &game);
+	mlx_hook(game.deb->mlx->win_ptr, 3, 0, ft_move_r, &game);
+	mlx_loop_hook(game.deb->mlx->mlx_ptr, &ft_move, &game);
+	mlx_loop(game.deb->mlx->mlx_ptr);
+}
+
 int			main(int argv, char **argc)
 {
 	int		fd;
 	char	**tab;
 	t_game	game;
-	if (argv == 2 || argv==3)
+
+	fd = 1;
+	if (argv == 2 || argv == 3)
 	{
 		if (!ft_strncmp(&argc[1][ft_strlen(argc[1]) - 4], ".cub", 4)
-		&& (fd = open(argc[1], O_RDONLY)) >= 0)
+		&& ((fd = open(argc[1], O_RDONLY)))>= 0)
 		{
 			init_game(&game, (tab = init_tab(argc[1], fd)));
 			int_strat(game.deb, game.player);
 			if (argv == 3)
-			{
-				if (!ft_strncmp(argc[2], "--save",6))
-					ft_bmp((game.deb->mlx->data), game.deb->resolution, game);
-				 else
-					ft_error(0);
-			}
-			mlx_hook(game.deb->mlx->win_ptr, 2, 0, ft_move_p, &game);
-			mlx_hook(game.deb->mlx->win_ptr, 3, 0, ft_move_r, &game);
-			mlx_loop_hook(game.deb->mlx->mlx_ptr, &ft_move, &game);
-			mlx_loop(game.deb->mlx->mlx_ptr);
+				ft_check_bmp(argc[2], game);
+			ft_mlx_hook(game);
 		}
+		else if (fd != 0)
+			ft_error(10, game);
 		else
-			ft_error(0);
+			ft_error(11, game);
 	}
 	else
-		ft_error(0);
+		ft_error(12, game);
 	return (0);
 }

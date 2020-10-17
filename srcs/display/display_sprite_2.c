@@ -6,7 +6,7 @@
 /*   By: gbabeau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 16:46:26 by gbabeau           #+#    #+#             */
-/*   Updated: 2020/10/15 17:52:20 by gbabeau          ###   ########.fr       */
+/*   Updated: 2020/10/17 14:54:03 by gbabeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ void	display_wall(int i, float rot, t_deb *deb, t_player *player)
 			else if (a < -M_PI)
 				a += 2 * M_PI;
 			if (a < M_PI / 3 && a > (-M_PI / 3))
-				affiche_objet(x, (deb->dist[x] = dist) * cos(display_2(deb, player, i) - rot), deb, dist_2);
+				affiche_objet(x, (deb->dist[x] = dist)
+						* cos(display_2(deb, player, i) - rot), deb, dist_2);
 		}
 	}
 }

@@ -1,11 +1,12 @@
-R 1000 1000
-NO ./textur/alpha.xpm
-SO ./textur/brick.xpm
-WE ./textur/frensh.xpm
-EA ./textur/ilusion.xpm
-S ./textur/star.xpm
+NO  ./textur/alpha.xpm
+SO  ./textur/brick.xpm
+WE    ./textur/frensh.xpm
+EA   ./textur/ilusion.xpm
+S  ./textur/star.xpm
+
 F 255,0,0
 C 0,255,0
+R    1000     1000
 
 11111111111111111111111111111
 10110020011100000000000010001

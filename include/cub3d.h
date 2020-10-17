@@ -6,7 +6,7 @@
 /*   By: gbabeau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 15:39:33 by gbabeau           #+#    #+#             */
-/*   Updated: 2020/10/16 14:22:14 by gbabeau          ###   ########.fr       */
+/*   Updated: 2020/10/17 17:57:51 by gbabeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ typedef struct	s_game
 	t_deb		*deb;
 }				t_game;
 
-int				ft_error(int error);
+int				ft_error(int a, t_game game);
 int				ft_compare_c_to_s(char c, char *str);
 int				ft_strncmp(const char *s1, const char *s2, size_t n);
 int				ft_atoi(const char *str);
@@ -105,10 +105,10 @@ void			ft_move_back(t_player *player, char **map);
 void			ft_move_right(t_player *player, char **map);
 void			ft_move_left(t_player *player, char **map);
 char			**tri(char *c);
-int				ft_real(t_deb *deb, char *tab);
-int				ft_color_fc(t_deb *deb, char *tab, int fc);
-int				ft_textur_wall(t_deb *deb, char *tab, int dirc);
-int				ft_textur_objet(t_deb *deb, char *tab);
+int				ft_real(t_deb *deb, char *tab, t_game game);
+int				ft_color_fc(t_deb *deb, char *tab, int fc, t_game game);
+int				ft_textur_wall(t_deb *deb, char *tab, int dirc, t_game game);
+int				ft_textur_objet(t_deb *deb, char *tab, t_game game);
 int				ft_move(t_game *game);
 int				rayon_y(float yx[2], float delt[2], float n_t[2], char **map);
 int				rayon_x(float yx[2], float delt[2], float n_t[2], char **map);
@@ -124,17 +124,16 @@ int				ft_end(t_game *game);
 void			ft_copy_map(char *tab, char *map);
 char			**ft_malloc_struc_map(char **tab);
 void			ft_transition(char **tab, t_deb *deb);
-int				ft_map_check_2(t_deb *deb, int y, int x, t_player *player);
-t_deb			ft_map_check(t_deb *deb, t_player *player);
+int				ft_map_check_2(t_game game, int y, int x);
+t_deb			ft_map_check(t_deb *deb, t_game game);
 int				player_init(t_player *player, int y, int x, char pos);
 void			ft_deb(char **tab, t_game *game);
-void			init_deb_mlx(t_mlx *mlx, int resolution[2]);
+int				init_deb_mlx(t_mlx *mlx, int resolution[2], t_deb *deb);
 void			ft_putnbr_fd(int nb, int fd);
 void			init_var(int *a, float n_t[3], float *rot);
 int				ft_printf(const char *str, ...);
 int				ft_map(t_deb *deb, char **tab, t_player *player);
 int				ft_strlen_cub(char *str);
-int				ft_error(int a);
 int				ft_bmp(char *data, int resolution[2], t_game game);
 void			ft_put_m(int a, int b);
 int				colition_y(t_player *player, float dic, char **map);
@@ -154,5 +153,5 @@ int				orde_sprite(t_deb *deb, t_player *player);
 float			display_2(t_deb *deb, t_player *player, int i);
 void			init_affiche_objet(t_deb *deb, t_player *player, float rot);
 void			ft_free_tab(void **tab);
-
+void			ft_check_bmp(char *argc, t_game game);
 #endif

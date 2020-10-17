@@ -6,7 +6,7 @@
 /*   By: gbabeau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 12:16:52 by gbabeau           #+#    #+#             */
-/*   Updated: 2020/10/16 16:11:18 by gbabeau          ###   ########.fr       */
+/*   Updated: 2020/10/17 16:33:22 by gbabeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int		ft_textur_wall(t_deb *deb, char *tab, int dirc)
 	{
 		while (tab[i] == ' ')
 			i++;
+		if (deb->textur[dirc]->name != NULL)
+			return (ft_error(13));
 		deb->textur[dirc]->name = ft_strdup(&tab[i]);
 		deb->textur[dirc]->img_ptr = mlx_xpm_file_to_image(deb->mlx->mlx_ptr,
 		deb->textur[dirc]->name, &deb->textur[dirc]->w, &deb->textur[dirc]->h);
@@ -44,6 +46,9 @@ int		ft_textur_objet(t_deb *deb, char *tab)
 	n = 0;
 	while (tab[i] == ' ')
 		i++;
+
+		if (deb->textur[4]->name != NULL)
+		return (ft_error(14));
 	deb->textur[4]->name = ft_strdup(&tab[i]);
 	deb->textur[4]->img_ptr = mlx_xpm_file_to_image(deb->mlx->mlx_ptr,
 			deb->textur[4]->name, &deb->textur[4]->w, &deb->textur[4]->h);

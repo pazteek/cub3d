@@ -6,7 +6,7 @@
 /*   By: gbabeau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 16:03:11 by gbabeau           #+#    #+#             */
-/*   Updated: 2020/10/16 10:46:05 by gbabeau          ###   ########.fr       */
+/*   Updated: 2020/10/17 17:48:28 by gbabeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,24 @@ int		init_deb(t_deb *deb, char **tab, t_game *game)
 	int			i;
 
 	i = -1;
-	if(!(mlx = malloc(sizeof(t_mlx))))
+	if (!(mlx = malloc(sizeof(t_mlx))))
 		return (0);
 	deb->mlx = mlx;
 	while (++i != 5)
 	{
-		if(!(textur[i] = malloc(sizeof(t_textur))))
+		if (!(textur[i] = malloc(sizeof(t_textur))))
 			return (0);
 		deb->textur[i] = textur[i];
+		deb->textur[i]->name = NULL;
 	}
+	deb->mlx->c_f[0] = 0;
+	deb->mlx->c_f[1] = 0;
 	deb->mlx->mlx_ptr = mlx_init();
 	ft_deb(tab, game);
 	return (1);
 }
 
-void		init_game(t_game *game, char **tab)
+void	init_game(t_game *game, char **tab)
 {
 	t_deb		*deb;
 	t_player	*player;

@@ -6,11 +6,22 @@
 /*   By: gbabeau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 13:00:57 by gbabeau           #+#    #+#             */
-/*   Updated: 2020/10/15 19:57:18 by gbabeau          ###   ########.fr       */
+/*   Updated: 2020/10/17 15:02:04 by gbabeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+int		ft_objet(float **objet, int *nbr_objet, int x, int y)
+{
+	if (!(objet[*nbr_objet - 1] = malloc(sizeof(float) * 3)))
+		return (0);
+	objet[*nbr_objet - 1][0] = y + 0.5;
+	objet[*nbr_objet - 1][1] = x + 0.5;
+	objet[*nbr_objet - 1][2] = 0;
+	*nbr_objet -= 1;
+	return (1);
+}
 
 float	**ft_tab_objet(int nbr_objet, char **map)
 {
@@ -24,22 +35,13 @@ float	**ft_tab_objet(int nbr_objet, char **map)
 		return (0);
 	objet[nbr_objet] = NULL;
 	while (0 != nbr_objet && map[y] != NULL)
-	{
-		if (map[y][++x] == '2')
-		{
-			if (!(objet[nbr_objet - 1] = malloc(sizeof(float) * 3)))
-				return (NULL);
-			objet[nbr_objet - 1][0] = y + 0.5;
-			objet[nbr_objet - 1][1] = x + 0.5;
-			objet[nbr_objet - 1][2] = 0;
-			nbr_objet--;
-		}
+		if (map[y][++x] == '2' && (0 == ft_objet(objet, &nbr_objet, x, y)))
+			return (0);
 		else if (map[y][x] == '\0')
 		{
 			y++;
 			x = -1;
 		}
-	}
 	return (objet);
 }
 
@@ -68,35 +70,6 @@ void	ft_copy_map(char *tab, char *map)
 		map[i] = tab[i];
 	}
 	map[i] = '\0';
-}
-
-char	**ft_malloc_struc_map(char **tab)
-{
-	int		i;
-	int		y;
-	char	**map;
-
-	y = 0;
-	i = -1;
-	while (tab[++i][0] == '\0')
-		;
-	while (tab[i] != 0 && tab[i++][0] != '\0')
-		y++;
-	if (tab[i] != 0 && tab[i + 1] != 0)
-		ft_error(2);
-	if (!(map = malloc(sizeof(char*) * (y + 1))))
-		return (NULL);
-	map[y] = 0;
-	y = 0;
-	i = -1;
-	while (tab[++i][0] == '\0')
-		;
-	while (tab[i] != 0 && tab[i][0] != '\0')
-	{
-		map[y++] = ft_strdup(tab[i]);
-		i++;
-	}
-	return (tab);
 }
 
 void	ft_transition(char **tab, t_deb *deb)

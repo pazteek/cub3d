@@ -6,7 +6,7 @@
 /*   By: gbabeau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 20:04:16 by gbabeau           #+#    #+#             */
-/*   Updated: 2020/10/08 15:02:19 by gbabeau          ###   ########.fr       */
+/*   Updated: 2020/10/17 13:24:46 by gbabeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ typedef struct		s_list
 	void			*content;
 	struct s_list	*next;
 }					t_list;
+
 void				*ft_memset(void *s, int c, size_t n);
 void				ft_bzero(void *s, size_t n);
 void				*ft_memcpy(void *dest, const void *srcs, size_t n);
@@ -73,6 +74,6 @@ char				*ft_uitoa(unsigned int n);
 char				*ft_ultoa(unsigned long int n);
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void*),
 							void (*del)(void*));
-int	ft_compare_c_to_s(char c, char *str);
-int	ft_compare_s_to_s(char *str_1, char *str_2);
+int					ft_compare_c_to_s(char c, char *str);
+int					ft_compare_s_to_s(char *str_1, char *str_2);
 #endif
