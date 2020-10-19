@@ -6,13 +6,11 @@
 /*   By: gbabeau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 16:46:26 by gbabeau           #+#    #+#             */
-/*   Updated: 2020/10/17 14:54:03 by gbabeau          ###   ########.fr       */
+/*   Updated: 2020/10/19 18:28:50 by gbabeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include <stdio.h>
-#include <math.h>
 
 float	display_2(t_deb *deb, t_player *player, int i)
 {

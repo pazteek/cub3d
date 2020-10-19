@@ -6,7 +6,7 @@
 /*   By: gbabeau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 13:06:13 by gbabeau           #+#    #+#             */
-/*   Updated: 2020/10/17 18:00:15 by gbabeau          ###   ########.fr       */
+/*   Updated: 2020/10/19 11:58:36 by gbabeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void		ft_deb(char **tab, t_game *game)
 		n += ini_cub_cub(game, tab, i);
 	}
 	if (n == 8)
-		n = ft_map(game->deb, &tab[i + 1], game->player);
+		n = ft_map(game->deb, &tab[i + 1], *game);
 	else if (n >= 0)
 		ft_error(10, *game);
 }

@@ -6,13 +6,11 @@
 /*   By: gbabeau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 12:01:26 by gbabeau           #+#    #+#             */
-/*   Updated: 2020/10/17 12:59:18 by gbabeau          ###   ########.fr       */
+/*   Updated: 2020/10/19 18:28:59 by gbabeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include <stdio.h>
-#include <math.h>
 
 static int	init_var_affiche_mur(float yx[2], int o[2], int i, t_deb *deb)
 {

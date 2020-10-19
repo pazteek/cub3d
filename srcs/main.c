@@ -6,21 +6,19 @@
 /*   By: gbabeau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 16:00:39 by gbabeau           #+#    #+#             */
-/*   Updated: 2020/10/17 17:29:24 by gbabeau          ###   ########.fr       */
+/*   Updated: 2020/10/19 19:32:08 by gbabeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "time.h"
-#include "stdio.h"
 
-int			ft_map(t_deb *deb, char **tab, t_player *player)
+int			ft_map(t_deb *deb, char **tab, t_game game)
 {
 	int	i;
 
 	i = 0;
 	ft_transition(tab, &(*deb));
-	ft_map_check(&(*deb), player);
+	ft_map_check(&(*deb), game);
 	return (0);
 }
 
@@ -49,6 +47,7 @@ void		ft_mlx_hook(t_game game)
 	mlx_hook(game.deb->mlx->win_ptr, 2, 0, ft_move_p, &game);
 	mlx_hook(game.deb->mlx->win_ptr, 3, 0, ft_move_r, &game);
 	mlx_loop_hook(game.deb->mlx->mlx_ptr, &ft_move, &game);
+	mlx_hook(game.deb->mlx->win_ptr, 17, (1L << 17), ft_end, &game);
 	mlx_loop(game.deb->mlx->mlx_ptr);
 }
 
@@ -59,10 +58,11 @@ int			main(int argv, char **argc)
 	t_game	game;
 
 	fd = 1;
+	game.deb = NULL;
 	if (argv == 2 || argv == 3)
 	{
 		if (!ft_strncmp(&argc[1][ft_strlen(argc[1]) - 4], ".cub", 4)
-		&& ((fd = open(argc[1], O_RDONLY)))>= 0)
+		&& ((fd = open(argc[1], O_RDONLY))) >= 0)
 		{
 			init_game(&game, (tab = init_tab(argc[1], fd)));
 			int_strat(game.deb, game.player);

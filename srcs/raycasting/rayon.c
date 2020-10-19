@@ -6,13 +6,11 @@
 /*   By: gbabeau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/12 15:20:35 by gbabeau           #+#    #+#             */
-/*   Updated: 2020/10/11 22:06:14 by gbabeau          ###   ########.fr       */
+/*   Updated: 2020/10/19 18:31:20 by gbabeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 int	rayon_y(float yx[2], float delt[2], float n_t[6], char **map)
 {

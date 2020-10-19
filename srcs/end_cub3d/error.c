@@ -6,12 +6,11 @@
 /*   By: gbabeau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 16:00:39 by gbabeau           #+#    #+#             */
-/*   Updated: 2020/10/17 17:26:11 by gbabeau          ###   ########.fr       */
+/*   Updated: 2020/10/19 19:25:43 by gbabeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "time.h"
 
 void		ft_error_2(int error, t_game game)
 {
@@ -26,17 +25,8 @@ void		ft_error_2(int error, t_game game)
 	if (14 == error)
 		write(1, "Error\nduple textur sprite\n", 26);
 	if (15 == error)
-		write(1, "Error\n false resolution\n", 24);
-	if (16 == error)
-		write(1, "Error\n not resolution\n", 22);
-	if (17 == error)
-		write(1, "Error\nfalse color fold or ceiling\n", 34);
-	if (18 == error)
-		write(1, "Error\nnot textur wall\n", 22);
-	if (19 == error)
-		write(1, "Error\n file false identifiant\n", 30);
-	ft_end(&game);
-	exit(EXIT_FAILURE);
+		write(1, "Error\n no place\n", 16);
+	ft_end(0, &game);
 }
 
 int			ft_error(int error, t_game game)
@@ -61,9 +51,8 @@ int			ft_error(int error, t_game game)
 		write(1, "Error\nnot textur wall\n", 22);
 	if (9 == error)
 		write(1, "Error\n file false order\n", 22);
-	if(10 <= error)
+	if (10 <= error)
 		ft_error_2(error, game);
-	ft_end(&game);
-	exit(EXIT_FAILURE);
+	ft_end(0, &game);
 	return (-500);
 }

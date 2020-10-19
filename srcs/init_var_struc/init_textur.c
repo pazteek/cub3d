@@ -6,13 +6,13 @@
 /*   By: gbabeau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 12:16:52 by gbabeau           #+#    #+#             */
-/*   Updated: 2020/10/17 16:33:22 by gbabeau          ###   ########.fr       */
+/*   Updated: 2020/10/19 18:30:51 by gbabeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int		ft_textur_wall(t_deb *deb, char *tab, int dirc)
+int		ft_textur_wall(t_deb *deb, char *tab, int dirc, t_game game)
 {
 	int n;
 	int i;
@@ -24,7 +24,7 @@ int		ft_textur_wall(t_deb *deb, char *tab, int dirc)
 		while (tab[i] == ' ')
 			i++;
 		if (deb->textur[dirc]->name != NULL)
-			return (ft_error(13));
+			return (ft_error(13, game));
 		deb->textur[dirc]->name = ft_strdup(&tab[i]);
 		deb->textur[dirc]->img_ptr = mlx_xpm_file_to_image(deb->mlx->mlx_ptr,
 		deb->textur[dirc]->name, &deb->textur[dirc]->w, &deb->textur[dirc]->h);
@@ -32,12 +32,12 @@ int		ft_textur_wall(t_deb *deb, char *tab, int dirc)
 				&deb->textur[dirc]->bpp, &deb->textur[dirc]->sizeline,
 				&deb->textur[dirc]->endian);
 		if (deb->textur[dirc]->data == 0)
-			ft_error(3);
+			ft_error(3, game);
 	}
 	return (1);
 }
 
-int		ft_textur_objet(t_deb *deb, char *tab)
+int		ft_textur_objet(t_deb *deb, char *tab, t_game game)
 {
 	int	n;
 	int	i;
@@ -46,9 +46,8 @@ int		ft_textur_objet(t_deb *deb, char *tab)
 	n = 0;
 	while (tab[i] == ' ')
 		i++;
-
-		if (deb->textur[4]->name != NULL)
-		return (ft_error(14));
+	if (deb->textur[4]->name != NULL)
+		return (ft_error(14, game));
 	deb->textur[4]->name = ft_strdup(&tab[i]);
 	deb->textur[4]->img_ptr = mlx_xpm_file_to_image(deb->mlx->mlx_ptr,
 			deb->textur[4]->name, &deb->textur[4]->w, &deb->textur[4]->h);
@@ -56,6 +55,6 @@ int		ft_textur_objet(t_deb *deb, char *tab)
 			&deb->textur[4]->bpp, &deb->textur[4]->sizeline,
 			&deb->textur[4]->endian);
 	if (deb->textur[4]->data == 0)
-		ft_error(3);
+		ft_error(3, game);
 	return (1);
 }

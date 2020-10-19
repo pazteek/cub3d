@@ -6,7 +6,7 @@
 /*   By: gbabeau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 12:03:06 by gbabeau           #+#    #+#             */
-/*   Updated: 2020/10/17 17:26:56 by gbabeau          ###   ########.fr       */
+/*   Updated: 2020/10/19 19:26:09 by gbabeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,11 @@ int			ft_bmp(char *data, int resolution[2], t_game game)
 {
 	int	fd;
 
-	fd = open("noc.bmp", O_WRONLY | O_CREAT |
+	fd = open("cub3d.bmp", O_WRONLY | O_CREAT |
 	O_TRUNC, S_IRUSR | S_IWUSR);
 	ft_header_bmp(fd, resolution);
 	ft_write_image_bmp(fd, data, resolution[0] * resolution[1]);
-	ft_end(&game);
+	ft_end(1 ,&game);
 	return (0);
 }
 

@@ -6,12 +6,11 @@
 /*   By: gbabeau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 16:32:15 by gbabeau           #+#    #+#             */
-/*   Updated: 2020/10/17 17:59:11 by gbabeau          ###   ########.fr       */
+/*   Updated: 2020/10/19 19:04:03 by gbabeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "stdio.h"
 
 int		ft_real(t_deb *deb, char *tab, t_game game)
 {
@@ -46,13 +45,13 @@ int		cloro_fc_2(char *tab, int *i, int *a, int *n)
 	int img_color;
 
 	img_color = ft_atoi(&tab[*i - *a]) * pow(256, 2 - *n);
-	if (((tab[*i] != '\0' && *n != 2) && tab[*i] != ',')
-			|| ft_atoi(&tab[*i - *a]) > 255)
-		return (-2147483648);
+	if ((((tab[*i] != '\0' && *n != 2) && tab[*i] != ',')
+			|| ft_atoi(&tab[*i - *a]) > 255))
+		return (-2147483647);
 	*n += 1;
-	while (tab[*i] == ' ')
-		*i += 1;
 	if (tab[*i] != '\0')
+		*i += 1;
+	while (tab[*i] == ' ')
 		*i += 1;
 	return (img_color);
 }
@@ -72,11 +71,11 @@ int		ft_color_fc(t_deb *deb, char *tab, int fc, t_game game)
 			while (ft_compare_c_to_s(tab[i++], "1234567890"))
 				a++;
 			i--;
-			if (a <= 4 && (tab[i] == ',' || tab[i] == '\0'))
+			if (a <= 4 && a > 0 && (tab[i] == ',' || tab[i] == '\0'))
 				deb->mlx->c_f[fc] += cloro_fc_2(tab, &i, &a, &n);
 			else
 				ft_error(7, game);
-			if (deb->mlx->c_f[fc] < 0 )
+			if (deb->mlx->c_f[fc] < 0)
 				ft_error(7, game);
 		}
 	else

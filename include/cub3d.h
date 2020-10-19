@@ -6,7 +6,7 @@
 /*   By: gbabeau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 15:39:33 by gbabeau           #+#    #+#             */
-/*   Updated: 2020/10/17 17:57:51 by gbabeau          ###   ########.fr       */
+/*   Updated: 2020/10/19 19:23:37 by gbabeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <string.h>
 # include <math.h>
 # include <stdarg.h>
-# include <stdlib.h>
 # include <unistd.h>
 # include <sys/types.h>
 # include <sys/stat.h>
@@ -120,7 +119,7 @@ void			color_fc(t_deb *deb, int i, int v);
 void			affiche_mur(int i, float r, t_deb *deb, float *yx);
 void			affiche_objet(int i, float r, t_deb *deb, float dist_2);
 int				ft_size_map(char *tab);
-int				ft_end(t_game *game);
+int				ft_end(int suc, t_game *game);
 void			ft_copy_map(char *tab, char *map);
 char			**ft_malloc_struc_map(char **tab);
 void			ft_transition(char **tab, t_deb *deb);
@@ -132,7 +131,7 @@ int				init_deb_mlx(t_mlx *mlx, int resolution[2], t_deb *deb);
 void			ft_putnbr_fd(int nb, int fd);
 void			init_var(int *a, float n_t[3], float *rot);
 int				ft_printf(const char *str, ...);
-int				ft_map(t_deb *deb, char **tab, t_player *player);
+int				ft_map(t_deb *deb, char **tab, t_game game);
 int				ft_strlen_cub(char *str);
 int				ft_bmp(char *data, int resolution[2], t_game game);
 void			ft_put_m(int a, int b);

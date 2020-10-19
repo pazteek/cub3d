@@ -6,13 +6,11 @@
 /*   By: gbabeau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 12:18:42 by gbabeau           #+#    #+#             */
-/*   Updated: 2020/10/17 12:58:33 by gbabeau          ###   ########.fr       */
+/*   Updated: 2020/10/19 18:28:35 by gbabeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include <stdio.h>
-#include <math.h>
 
 static void	ft_bgr(int *datas, int *data)
 {

@@ -6,13 +6,11 @@
 /*   By: gbabeau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 16:30:43 by gbabeau           #+#    #+#             */
-/*   Updated: 2020/10/17 15:12:49 by gbabeau          ###   ########.fr       */
+/*   Updated: 2020/10/19 18:31:11 by gbabeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 static int		udapte_delt(float rot, float delt[2], float n[3], float yx[2])
 {
@@ -33,16 +31,16 @@ static float	init_int_strat(float *pas, float yx[2],
 	return (play->rot + M_PI / 6);
 }
 
-void ft_display_windos(t_deb *deb, t_player *player, float rot)
+void			ft_display_windos(t_deb *deb, t_player *player, float rot)
 {
 	static int a = 0;
 
 	init_affiche_objet(deb, player, rot);
-	if(a == 1)
+	if (a == 1)
 	{
-	mlx_put_image_to_window(deb->mlx->mlx_ptr, deb->mlx->win_ptr,
+		mlx_put_image_to_window(deb->mlx->mlx_ptr, deb->mlx->win_ptr,
 			deb->mlx->img_ptr, 0, 0);
-	mlx_do_sync(deb->mlx->mlx_ptr);
+		mlx_do_sync(deb->mlx->mlx_ptr);
 	}
 	a = 1;
 }
@@ -70,7 +68,7 @@ void			int_strat(t_deb *deb, t_player *player)
 			yx[0] = player->pos_y;
 		}
 	}
-	ft_display_windos(deb,player,rot);
+	ft_display_windos(deb, player, rot);
 }
 
 int				int_strat2(float yx[2], float rot, char **map)

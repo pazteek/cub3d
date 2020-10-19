@@ -6,12 +6,11 @@
 /*   By: gbabeau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 15:32:32 by gbabeau           #+#    #+#             */
-/*   Updated: 2020/10/16 16:22:04 by gbabeau          ###   ########.fr       */
+/*   Updated: 2020/10/19 19:30:00 by gbabeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include <time.h>
 
 void	ft_move_2(void (*f)(t_player*, char**), t_game *game)
 {
@@ -39,7 +38,7 @@ int		ft_move_p(int key, t_game *game)
 	if (key == 124)
 		game->deb->mov[5] = '1';
 	if (key == 53)
-		return (ft_end(game));
+		return (ft_end(1, game));
 	return (0);
 }
 
@@ -57,8 +56,6 @@ int		ft_move_r(int key, t_game *game)
 		game->deb->mov[4] = 0;
 	if (key == 124)
 		game->deb->mov[5] = 0;
-	if (key == 53)
-		return (ft_end(game));
 	return (0);
 }
 
