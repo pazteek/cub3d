@@ -6,7 +6,7 @@
 /*   By: gbabeau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 15:32:32 by gbabeau           #+#    #+#             */
-/*   Updated: 2020/10/21 15:24:57 by gbabeau          ###   ########.fr       */
+/*   Updated: 2020/10/21 18:18:11 by gbabeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,17 @@ void	ft_move_3(void (*f)(t_player*), t_game *game)
 
 int		ft_move_p(int key, t_game *game)
 {
-	if (key == 13)
+	if (key == KEY_W)
 		game->deb->mov[0] = '1';
-	if (key == 0)
+	if (key == KEY_A)
 		game->deb->mov[1] = '1';
-	if (key == 1)
+	if (key == KEY_S)
 		game->deb->mov[2] = '1';
-	if (key == 2)
+	if (key == KEY_D)
 		game->deb->mov[3] = '1';
-	if (key == 123)
+	if (key == LEFT_ROT)
 		game->deb->mov[4] = '1';
-	if (key == 124)
+	if (key == RIGHT_ROT)
 		game->deb->mov[5] = '1';
 	if (key == 53)
 		return (ft_end(1, game));
@@ -44,17 +44,17 @@ int		ft_move_p(int key, t_game *game)
 
 int		ft_move_r(int key, t_game *game)
 {
-	if (key == 13)
+	if (key == KEY_W)
 		game->deb->mov[0] = 0;
-	if (key == 0)
+	if (key == KEY_A)
 		game->deb->mov[1] = 0;
-	if (key == 1)
+	if (key == KEY_S)
 		game->deb->mov[2] = 0;
-	if (key == 2)
+	if (key == KEY_D)
 		game->deb->mov[3] = 0;
-	if (key == 123)
+	if (key == LEFT_ROT)
 		game->deb->mov[4] = 0;
-	if (key == 124)
+	if (key == RIGHT_ROT)
 		game->deb->mov[5] = 0;
 	return (0);
 }

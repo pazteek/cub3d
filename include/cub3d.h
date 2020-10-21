@@ -6,7 +6,7 @@
 /*   By: gbabeau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 15:39:33 by gbabeau           #+#    #+#             */
-/*   Updated: 2020/10/21 11:18:43 by gbabeau          ###   ########.fr       */
+/*   Updated: 2020/10/21 18:12:19 by gbabeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,13 @@
 # include "libft.h"
 
 # define STEP 0.1
+# define LEFT_ROT 123
+# define RIGHT_ROT 124
+# define KEY_A 0
+# define KEY_S 1
+# define KEY_D 2
+# define KEY_W 13
+# define KEY_ESC 53
 
 typedef struct	s_bmp
 {
