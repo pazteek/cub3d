@@ -6,7 +6,7 @@
 /*   By: gbabeau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 16:00:39 by gbabeau           #+#    #+#             */
-/*   Updated: 2020/10/19 19:32:08 by gbabeau          ###   ########.fr       */
+/*   Updated: 2020/10/21 13:15:32 by gbabeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,18 @@ char		**init_tab(char *argc, int fd)
 	return (tri(c));
 }
 
+static int	end_cross(int a, t_game *game)
+{
+	ft_end(2, game);
+	return (a);
+}
+
 void		ft_mlx_hook(t_game game)
 {
 	mlx_hook(game.deb->mlx->win_ptr, 2, 0, ft_move_p, &game);
 	mlx_hook(game.deb->mlx->win_ptr, 3, 0, ft_move_r, &game);
 	mlx_loop_hook(game.deb->mlx->mlx_ptr, &ft_move, &game);
-	mlx_hook(game.deb->mlx->win_ptr, 17, (1L << 17), ft_end, &game);
+	mlx_hook(game.deb->mlx->win_ptr, 17, (1L << 17), end_cross, &game);
 	mlx_loop(game.deb->mlx->mlx_ptr);
 }
 

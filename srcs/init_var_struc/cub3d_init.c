@@ -6,7 +6,7 @@
 /*   By: gbabeau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 16:32:15 by gbabeau           #+#    #+#             */
-/*   Updated: 2020/10/19 19:04:03 by gbabeau          ###   ########.fr       */
+/*   Updated: 2020/10/21 16:59:03 by gbabeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int		ft_color_fc(t_deb *deb, char *tab, int fc, t_game game)
 			if (deb->mlx->c_f[fc] < 0)
 				ft_error(7, game);
 		}
-	else
+	if (tab[1] != ' ' || n != 3)
 		ft_error(7, game);
 	deb->mlx->c_f[fc] = mlx_get_color_value(deb->mlx->mlx_ptr,
 			deb->mlx->c_f[fc]);

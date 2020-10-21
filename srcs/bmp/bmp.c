@@ -6,12 +6,11 @@
 /*   By: gbabeau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 12:03:06 by gbabeau           #+#    #+#             */
-/*   Updated: 2020/10/19 19:26:09 by gbabeau          ###   ########.fr       */
+/*   Updated: 2020/10/21 14:30:17 by gbabeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include <stdio.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
@@ -69,7 +68,7 @@ int			ft_bmp(char *data, int resolution[2], t_game game)
 	O_TRUNC, S_IRUSR | S_IWUSR);
 	ft_header_bmp(fd, resolution);
 	ft_write_image_bmp(fd, data, resolution[0] * resolution[1]);
-	ft_end(1 ,&game);
+	ft_end(1, &game);
 	return (0);
 }
 
@@ -78,5 +77,5 @@ void		ft_check_bmp(char *argc, t_game game)
 	if (!ft_strncmp(argc, "--save", 6))
 		ft_bmp((game.deb->mlx->data), game.deb->resolution, game);
 	else
-		ft_error(15, game);
+		ft_error(18, game);
 }

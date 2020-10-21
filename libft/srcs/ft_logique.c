@@ -1,28 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   ft_logique.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gbabeau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/15 18:42:55 by gbabeau           #+#    #+#             */
-/*   Updated: 2020/10/21 13:13:45 by gbabeau          ###   ########.fr       */
+/*   Created: 2020/10/20 17:24:14 by gbabeau           #+#    #+#             */
+/*   Updated: 2020/10/20 17:58:16 by gbabeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include <libft.h>
 
-void	ft_free_tab(void **tab)
+int	ft_xor(char a, char b)
 {
-	int	a;
-
-	a = 0;
-	while (tab[a] != NULL)
-	{
-		free(tab[a]);
-		tab[a] = 0;
-		a++;
-	}
-	free(tab);
-	tab = 0;
+	if ((!a && !b) || (a && b))
+		return (1);
+	return (0);
 }

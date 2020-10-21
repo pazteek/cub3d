@@ -6,11 +6,12 @@
 /*   By: gbabeau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 12:43:36 by gbabeau           #+#    #+#             */
-/*   Updated: 2020/10/17 17:57:40 by gbabeau          ###   ########.fr       */
+/*   Updated: 2020/10/21 17:11:24 by gbabeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include <stdio.h>
 
 int			ft_map_check_2(t_game game, int y, int x)
 {
@@ -23,14 +24,14 @@ int			ft_map_check_2(t_game game, int y, int x)
 	if (y == 0 || game.deb->map[y + 1] == 0 || x == 0)
 		ft_error(3, game);
 	if (game.deb->map[y][x - 1] == ' ' ||
-			game.deb->map[y][x - 1] == ' ' || game.deb->map[y][x - 1] == '\0')
-		return (0);
+			game.deb->map[y][x + 1] == ' ' || game.deb->map[y][x + 1] == '\0')
+		return (ft_error(16, game));
 	if (x > (int)(ft_strlen(game.deb->map[y - 1]))
 			|| game.deb->map[y - 1][x] == ' ')
-		return (0);
+		return (ft_error(16, game));
 	if (x > (int)(ft_strlen(game.deb->map[y + 1]))
 			|| game.deb->map[y + 1][x] == ' ')
-		return (0);
+		return (ft_error(16, game));
 	return (1);
 }
 
@@ -43,14 +44,17 @@ t_deb		ft_map_check(t_deb *deb, t_game game)
 	pos = 1;
 	x = -1;
 	y = -1;
+	game.player->pos_x = -1;
 	while (deb->map[++y] != 0 && pos == 1)
 	{
 		while (deb->map[y][++x] != '\0' && pos == 1)
 			if (ft_compare_c_to_s(deb->map[y][x], "02NSOE"))
 				pos = ft_map_check_2(game, y, x);
+			else if (!ft_compare_c_to_s(deb->map[y][x], " 1"))
+				ft_error(0, game);
 		x = -1;
 	}
-	if (pos == 1)
+	if (game.player->pos_x != -1)
 		return (*deb);
 	ft_error(1, game);
 	return (*deb);

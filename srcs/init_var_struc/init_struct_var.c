@@ -6,7 +6,7 @@
 /*   By: gbabeau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 13:06:13 by gbabeau           #+#    #+#             */
-/*   Updated: 2020/10/19 11:58:36 by gbabeau          ###   ########.fr       */
+/*   Updated: 2020/10/21 17:03:43 by gbabeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int	ini_cub_cub(t_game *game, char **tab, int i)
 	if (!ft_strncmp("R", tab[i], 1))
 		return (ft_real(game->deb, tab[i], *game));
 	else if (!ft_strncmp("F", tab[i], 1))
-		ft_color_fc(game->deb, tab[i], 0, *game);
+		return (ft_color_fc(game->deb, tab[i], 0, *game));
 	else if (!ft_strncmp("C", tab[i], 1))
 		return (ft_color_fc(game->deb, tab[i], 1, *game));
 	else if (!ft_strncmp("NO", tab[i], 2))
@@ -46,12 +46,12 @@ static int	ini_cub_cub(t_game *game, char **tab, int i)
 	else if (!ft_strncmp("WE", tab[i], 2))
 		return (ft_textur_wall(game->deb, tab[i], 1, *game));
 	else if (!ft_strncmp("S", tab[i], 1))
-		return (ft_textur_objet(game->deb, tab[i], *game));
+		return (ft_textur_wall(game->deb, tab[i], 4, *game));
 	else if (tab[i][0] == '\0')
 		return (0);
 	else
-		return (ft_error(19, *game));
-	return (1);
+		return (ft_error(17, *game));
+	return (0);
 }
 
 void		ft_deb(char **tab, t_game *game)
@@ -67,8 +67,8 @@ void		ft_deb(char **tab, t_game *game)
 	}
 	if (n == 8)
 		n = ft_map(game->deb, &tab[i + 1], *game);
-	else if (n >= 0)
-		ft_error(10, *game);
+	else
+		ft_error(17, *game);
 }
 
 int			init_deb_mlx(t_mlx *mlx, int resolution[2], t_deb *deb)
@@ -76,7 +76,7 @@ int			init_deb_mlx(t_mlx *mlx, int resolution[2], t_deb *deb)
 	float	*dist;
 
 	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, resolution[0], resolution[1],
-					"cub3d");
+					"Cub3d");
 	mlx->img_ptr = mlx_new_image(mlx->mlx_ptr, resolution[0], resolution[1]);
 	mlx->data = mlx_get_data_addr(mlx->img_ptr, &(mlx->bpp),
 	&(mlx->sizeline), &(mlx->endian));

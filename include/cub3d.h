@@ -6,7 +6,7 @@
 /*   By: gbabeau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 15:39:33 by gbabeau           #+#    #+#             */
-/*   Updated: 2020/10/19 19:23:37 by gbabeau          ###   ########.fr       */
+/*   Updated: 2020/10/21 11:18:43 by gbabeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 # include <fcntl.h>
 # include <mlx.h>
 # include "libft.h"
+
+# define STEP 0.1
 
 typedef struct	s_bmp
 {
@@ -97,12 +99,12 @@ int				ft_strncmp(const char *s1, const char *s2, size_t n);
 int				ft_atoi(const char *str);
 int				ft_compare_c_to_s(char c, char *str);
 int				ft_compare_s_to_s(char *str1, char *str2);
-void			ft_move_front(t_player *player, char **map);
+void			ft_move_front(t_game *game);
 void			ft_rot_right(t_player *player);
 void			ft_rot_left(t_player *player);
-void			ft_move_back(t_player *player, char **map);
-void			ft_move_right(t_player *player, char **map);
-void			ft_move_left(t_player *player, char **map);
+void			ft_move_back(t_game *game);
+void			ft_move_right(t_game *game);
+void			ft_move_left(t_game *game);
 char			**tri(char *c);
 int				ft_real(t_deb *deb, char *tab, t_game game);
 int				ft_color_fc(t_deb *deb, char *tab, int fc, t_game game);
