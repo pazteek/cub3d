@@ -6,7 +6,7 @@
 /*   By: gbabeau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 16:05:13 by gbabeau           #+#    #+#             */
-/*   Updated: 2020/10/21 13:13:55 by gbabeau          ###   ########.fr       */
+/*   Updated: 2020/10/22 14:22:38 by gbabeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,10 @@ static void	ft_free_mlx(t_mlx *mlx)
 {
 	if (mlx->win_ptr != 0 && mlx->mlx_ptr != 0)
 		mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);
+	if (mlx->img_ptr != 0 && mlx->mlx_ptr != 0)
+		mlx_destroy_image(mlx->mlx_ptr, mlx->img_ptr);
+	if (mlx->mlx_ptr != 0)
+		free(mlx->mlx_ptr);
 }
 
 static void	ft_free_deb(t_deb *deb, int mode)

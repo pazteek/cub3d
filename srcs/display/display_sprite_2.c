@@ -6,7 +6,7 @@
 /*   By: gbabeau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 16:46:26 by gbabeau           #+#    #+#             */
-/*   Updated: 2020/10/21 13:13:25 by gbabeau          ###   ########.fr       */
+/*   Updated: 2020/10/22 13:01:07 by gbabeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,25 @@ float	display_2(t_deb *deb, t_player *player, int i)
 {
 	float	a;
 
-	if ((deb->objet[i][0] - player->pos_y) > 0)
+
+	if ((deb->objet[i][0] - player->pos_y) >= 0)
+	{
 		a = atanf((deb->objet[i][1] - player->pos_x) /
 				(deb->objet[i][0] - player->pos_y)) + M_PI;
+	}
 	else
+	{
 		a = atanf((deb->objet[i][1] - player->pos_x) /
 				(deb->objet[i][0] - player->pos_y));
+	}
 	if (a > M_PI)
+	{
 		return (a - 2 * M_PI);
-	else if (a < (-M_PI))
+	}
+	else if (a <= (-M_PI))
+	{
 		return (a + 2 * M_PI);
+	}
 	return (a);
 }
 
@@ -59,8 +68,10 @@ void	display_wall(int i, float rot, t_deb *deb, t_player *player)
 			else if (a < -M_PI)
 				a += 2 * M_PI;
 			if (a < M_PI / 3 && a > (-M_PI / 3))
-				affiche_objet(x, (deb->dist[x] = dist)
+			{
+				affiche_objet(x, dist
 						* cos(display_2(deb, player, i) - rot), deb, dist_2);
+				}
 		}
 	}
 }

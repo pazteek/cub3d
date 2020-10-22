@@ -6,7 +6,7 @@
 /*   By: gbabeau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 16:00:39 by gbabeau           #+#    #+#             */
-/*   Updated: 2020/10/21 16:57:27 by gbabeau          ###   ########.fr       */
+/*   Updated: 2020/10/22 13:40:13 by gbabeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 void		ft_error_2(int error, t_game game)
 {
 	if (10 == error)
-		write(1, "Error\nnot existe files\n", 23);
+		write(1, "Error\nnot existe file\n", 22);
 	if (11 == error)
-		write(1, "Error\nbad name files\n", 21);
+		write(1, "Error\nbad extention file\n", 25);
 	if (12 == error)
 		write(1, "Error\nnot good nombers arguments\n", 34);
 	if (13 == error)
@@ -30,6 +30,8 @@ void		ft_error_2(int error, t_game game)
 		write(1, "Error\nnot good nombers arguments to files\n", 43);
 	if (18 == error)
 		write(1, "Error\nnot good name arguments\n", 31);
+	if (20 == error)
+		write(1, "Error\nfalse end of file\n", 31);
 	ft_end(0, &game);
 }
 

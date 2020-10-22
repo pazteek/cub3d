@@ -6,7 +6,7 @@
 /*   By: gbabeau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 16:00:39 by gbabeau           #+#    #+#             */
-/*   Updated: 2020/10/21 13:15:32 by gbabeau          ###   ########.fr       */
+/*   Updated: 2020/10/22 13:35:07 by gbabeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int			main(int argv, char **argc)
 				ft_check_bmp(argc[2], game);
 			ft_mlx_hook(game);
 		}
-		else if (fd != 0)
+		else if (fd == -1)
 			ft_error(10, game);
 		else
 			ft_error(11, game);

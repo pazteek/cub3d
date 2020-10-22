@@ -6,7 +6,7 @@
 /*   By: gbabeau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/14 12:43:36 by gbabeau           #+#    #+#             */
-/*   Updated: 2020/10/21 17:11:24 by gbabeau          ###   ########.fr       */
+/*   Updated: 2020/10/22 13:25:22 by gbabeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_deb		ft_map_check(t_deb *deb, t_game game)
 	x = -1;
 	y = -1;
 	game.player->pos_x = -1;
-	while (deb->map[++y] != 0 && pos == 1)
+	while (deb->map[++y] != 0 && deb->map[y][0] != '\0' && pos == 1)
 	{
 		while (deb->map[y][++x] != '\0' && pos == 1)
 			if (ft_compare_c_to_s(deb->map[y][x], "02NSOE"))
@@ -54,8 +54,10 @@ t_deb		ft_map_check(t_deb *deb, t_game game)
 				ft_error(0, game);
 		x = -1;
 	}
-	if (game.player->pos_x != -1)
+	if (game.player->pos_x != -1 && deb->map[++y] == 0)
 		return (*deb);
-	ft_error(1, game);
-	return (*deb);
+	if (game.player->pos_x == -1)
+		ft_error(1, game);
+	 ft_error(20, game);
+	 return (*deb);
 }

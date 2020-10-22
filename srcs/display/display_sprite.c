@@ -6,7 +6,7 @@
 /*   By: gbabeau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 12:10:03 by gbabeau           #+#    #+#             */
-/*   Updated: 2020/10/21 16:45:03 by gbabeau          ###   ########.fr       */
+/*   Updated: 2020/10/22 14:23:15 by gbabeau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,11 @@ static int			init_var_objet(float dist_2, int o[2], int i, t_deb *deb)
 {
 	float a;
 
-	a = (((float)(deb->textur[4]->h / deb->textur[4]->w) / 8));
+	a = (((float)(((float)deb->textur[4]->h) / (float)(deb->textur[4]->w) / 7.0)));
 	if (fabs(dist_2) >= a)
+	{
 		return (-1);
+	}
 	o[1] = (truncf((float)((dist_2 + a) / (2 * a)
 			* deb->textur[4]->w)) * (deb->textur[4]->bpp / 8));
 	return (i * deb->mlx->bpp / 8);
@@ -39,7 +41,7 @@ static int			init_var_objet_2(float *z, float *t, float r, t_deb *deb)
 {
 	int		v;
 
-	*t = 0.3 - (((float)(deb->textur[4]->w / deb->textur[4]->h) / 4));
+	*t = 0.3 - (((float)(((float)(deb->textur[4]->w) / (float)(deb->textur[4]->h))/ 4.0)));
 	*z = -M_PI / 8;
 	v = 0;
 	while (tan(*z) * r < *t)
@@ -64,6 +66,8 @@ void				affiche_objet(int i, float r, t_deb *deb, float dist_2)
 	if (v != -1)
 	{
 		m = init_var_objet(dist_2, o, i, deb);
+		if (m != -1)
+			deb->dist[i] = r;
 		while (m != -1 && tan(z) * r < (0.3) && v < deb->resolution[1])
 		{
 			o[2] = (int)((((((tan(z) * r - t) / (0.3 - t))))
