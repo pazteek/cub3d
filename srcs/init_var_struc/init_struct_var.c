@@ -29,28 +29,49 @@ int			player_init(t_player *player, int y, int x, char pos)
 	return (1);
 }
 
-static int	ini_cub_cub(t_game *game, char **tab, int i)
+static int	ft_type_error(int a[8])
 {
-	if (!ft_strncmp("R", tab[i], 1))
+	if (a[0] == 2)
+		return (21);
+	if (a[1] == 2)
+		return (22);
+	if (a[2] == 2)
+		return (23);
+	if (a[3] == 2)
+		return (24);
+	if (a[4] == 2)
+		return (25);
+	if (a[5] == 2)
+		return (26);
+	if (a[6] == 2)
+		return (27);
+	if (a[7] == 2)
+		return (28);
+	return (17);
+}
+
+static int	ini_cub_cub(t_game *game, char **tab, int i, int a[8])
+{
+	if (!ft_strncmp("R", tab[i], 1) && !(a[0]++))
 		return (ft_real(game->deb, tab[i], *game));
-	else if (!ft_strncmp("F", tab[i], 1))
+	else if (!ft_strncmp("F", tab[i], 1) && !(a[1]++))
 		return (ft_color_fc(game->deb, tab[i], 0, *game));
-	else if (!ft_strncmp("C", tab[i], 1))
+	else if (!ft_strncmp("C", tab[i], 1) && !(a[2]++))
 		return (ft_color_fc(game->deb, tab[i], 1, *game));
-	else if (!ft_strncmp("NO", tab[i], 2))
+	else if (!ft_strncmp("NO", tab[i], 2) && !(a[3]++))
 		return (ft_textur_wall(game->deb, tab[i], 0, *game));
-	else if (!ft_strncmp("EA", tab[i], 2))
+	else if (!ft_strncmp("EA", tab[i], 2) && !(a[4]++))
 		return (ft_textur_wall(game->deb, tab[i], 3, *game));
-	else if (!ft_strncmp("SO", tab[i], 2))
+	else if (!ft_strncmp("SO", tab[i], 2) && !(a[5]++))
 		return (ft_textur_wall(game->deb, tab[i], 2, *game));
-	else if (!ft_strncmp("WE", tab[i], 2))
+	else if (!ft_strncmp("WE", tab[i], 2) && !(a[6]++))
 		return (ft_textur_wall(game->deb, tab[i], 1, *game));
-	else if (!ft_strncmp("S", tab[i], 1))
+	else if (!ft_strncmp("S", tab[i], 1) && !(a[7]++))
 		return (ft_textur_wall(game->deb, tab[i], 4, *game));
 	else if (tab[i][0] == '\0')
 		return (0);
 	else
-		return (ft_error(17, *game));
+		return (ft_error(ft_type_error(a), *game));
 	return (0);
 }
 
@@ -58,12 +79,16 @@ void		ft_deb(char **tab, t_game *game)
 {
 	int	i;
 	int	n;
+	int	a[8];
 
 	n = 0;
 	i = -1;
+	while (++i < 8)
+		a[i] = 0;
+	i = -1;
 	while (n != 8 && tab[++i] != 0 && tab[i][0] != '1')
 	{
-		n += ini_cub_cub(game, tab, i);
+		n += ini_cub_cub(game, tab, i, a);
 	}
 	if (n == 8)
 		n = ft_map(game->deb, &tab[i + 1], *game);

@@ -11,12 +11,10 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include <stdio.h>
 
 int			ft_map(t_deb *deb, char **tab, t_game game)
 {
-	int	i;
-
-	i = 0;
 	ft_transition(tab, &(*deb));
 	ft_map_check(&(*deb), game);
 	return (0);
@@ -50,8 +48,9 @@ static int	end_cross(int a, t_game *game)
 
 void		ft_mlx_hook(t_game game)
 {
-	mlx_hook(game.deb->mlx->win_ptr, 2, 0, ft_move_p, &game);
-	mlx_hook(game.deb->mlx->win_ptr, 3, 0, ft_move_r, &game);
+	mlx_hook(game.deb->mlx->win_ptr, 10, (1L << 21), ft_focus, &game);
+	mlx_hook(game.deb->mlx->win_ptr, 2, 1L, ft_move_p, &game);
+	mlx_hook(game.deb->mlx->win_ptr, 3, 2L, ft_move_r, &game);
 	mlx_loop_hook(game.deb->mlx->mlx_ptr, &ft_move, &game);
 	mlx_hook(game.deb->mlx->win_ptr, 17, (1L << 17), end_cross, &game);
 	mlx_loop(game.deb->mlx->mlx_ptr);
@@ -63,8 +62,8 @@ int			main(int argv, char **argc)
 	char	**tab;
 	t_game	game;
 
-	fd = 1;
 	game.deb = NULL;
+	game.player = NULL;
 	if (argv == 2 || argv == 3)
 	{
 		if (!ft_strncmp(&argc[1][ft_strlen(argc[1]) - 4], ".cub", 4)

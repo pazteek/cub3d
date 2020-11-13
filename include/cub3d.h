@@ -21,16 +21,19 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 # include <mlx.h>
+# include "mlx_int.h"
 # include "libft.h"
 
-# define STEP 0.1
-# define LEFT_ROT 123
-# define RIGHT_ROT 124
-# define KEY_A 0
-# define KEY_S 1
-# define KEY_D 2
-# define KEY_W 13
-# define KEY_ESC 53
+# define FOV 1
+# define FOV_W 0.78539816339
+# define STEP 0.04
+# define LEFT_ROT 65361
+# define RIGHT_ROT 65363
+# define KEY_A 113
+# define KEY_S 115
+# define KEY_D 100
+# define KEY_W 122
+# define KEY_ESC 65307
 
 typedef struct	s_bmp
 {
@@ -83,6 +86,7 @@ typedef struct	s_textur
 typedef struct	s_deb
 {
 	int			resolution[2];
+	float		fov_h;
 	int			color_fc[2];
 	char		**map;
 	t_mlx		*mlx;
@@ -100,6 +104,7 @@ typedef struct	s_game
 	t_deb		*deb;
 }				t_game;
 
+int				ft_focus(t_game *game);
 int				ft_error(int a, t_game game);
 int				ft_compare_c_to_s(char c, char *str);
 int				ft_strncmp(const char *s1, const char *s2, size_t n);

@@ -61,10 +61,8 @@ int		ft_size_map(char *tab)
 void	ft_copy_map(char *tab, char *map)
 {
 	int	i;
-	int	y;
 
 	i = -1;
-	y = 0;
 	while (tab[++i] != '\0')
 	{
 		map[i] = tab[i];

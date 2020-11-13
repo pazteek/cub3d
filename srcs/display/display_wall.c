@@ -31,7 +31,7 @@ static void	ft_bgr(int *datas, int *data)
 
 void		ft_pas_wall(float *z, int m[2], int *v, t_deb *deb)
 {
-	*z += M_PI / (4 * deb->resolution[1]);
+	*z += deb->fov_h / (deb->resolution[1]);
 	m[0] += deb->mlx->sizeline;
 	m[1] -= deb->mlx->sizeline;
 	*v += 1;
@@ -48,13 +48,12 @@ void		affiche_mur(int i, float r, t_deb *deb, float *yx)
 	v = 0;
 	m[0] = init_var_affiche_mur(yx, o, i, deb);
 	m[1] = m[0];
-	while ((0.5 > ((tan(z) * r) / 0.4)) && v <= (deb->resolution[1] / 2))
+	while ((0.5 > ((tan(z) * r) / 0.5)) && v <= (deb->resolution[1] / 2))
 	{
-		o[2] = (int)((((tan(z) * r) / 0.4) * deb->textur[deb->wall]->h));
+		o[2] = (int)((((tan(z) * r) / 0.5) * deb->textur[deb->wall]->h));
 		o[0] = (o[2] + (deb->textur[deb->wall]->h / 2))
 			* deb->textur[deb->wall]->sizeline + o[1];
-		if (v != deb->resolution[1] / 2)
-			ft_bgr((int*)(&deb->mlx->data[m[0]]),
+		ft_bgr((int*)(&deb->mlx->data[m[0]]),
 				(int*)(&deb->textur[deb->wall]->data[o[0]]));
 		o[0] = ((deb->textur[deb->wall]->h / 2) - o[2])
 			* deb->textur[deb->wall]->sizeline + o[1];

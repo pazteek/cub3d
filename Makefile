@@ -11,35 +11,31 @@ END = srcs/end_cub3d/ft_end.c srcs/end_cub3d/error.c
 
 BMP = srcs/bmp/bmp.c
 
-DIV = srcs/divers/complement.c srcs/divers//ft_free.c
+DIV = srcs/divers/complement.c srcs/divers/ft_free.c srcs/divers/focus.c
 
 IVA = srcs/init_var_struc/check_map.c srcs/init_var_struc/cub3d_init.c srcs/init_var_struc/init_map.c\
 srcs/init_var_struc/init_parsing.c srcs/init_var_struc/init_struct_var.c srcs/init_var_struc/init_textur.c
 
 IST = srcs/init_struc/malloc_struc.c
 
-MLX = -lmlx -lm -framework OpenGL -framework AppKit
+MLX = -I ./include -lmlx -lm -framework OpenGL -framework AppKit
 
-MLX_L = -L/usr/include -lm -lbsd -lX11 -lXext
+LMLX = -L./libft -lft -I/usr/local/include -L/usr/local/lib -lmlx -L/usr/include -lm -lbsd -lX11 -lXext 
 
 BOFT = $(BO:.c=.o)
 OBJ = $(SRCS:.c=.o)
 HEAD = include
-CFLAGS = -Wall -Werror -Wextra -I$(HEAD)
+CFLAGS = -Wall -Werror -Wextra -lm -I$(HEAD)
 CC = gcc
 LIB = ./libft/libft.a
 
 all: $(NAME)
-	Make -C libft
 
 $(NAME): $(OBJ)
-	Make -C libft
-	gcc  $(SRCS) $(CFLAGS) -I./include  $(MLX) $(LIB) -o $(NAME)
+	gcc  $(SRCS) $(CFLAGS) -o $(NAME) $(LMLX)
 clean :
-	Make -C libft clean
 	rm -f $(OBJ)
 fclean : clean
-	Make -C libft fclean
 	rm -f $(NAME)
 
 re: fclean all

@@ -15,11 +15,10 @@
 int	colition_x(t_player *player, float dic, char **map)
 {
 	float	yx[2];
-	int		a;
 
 	yx[0] = player->pos_y;
 	yx[1] = player->pos_x;
-	a = int_strat2(yx, player->rot + dic, map);
+	int_strat2(yx, player->rot + dic, map);
 	if (map[(int)(player->pos_y)]
 			[(int)(player->pos_x - (sin(player->rot + dic) * STEP * 2))] != '1')
 		return (-1);
@@ -29,11 +28,10 @@ int	colition_x(t_player *player, float dic, char **map)
 int	colition_y(t_player *player, float dic, char **map)
 {
 	float	yx[2];
-	int		a;
 
 	yx[0] = player->pos_y;
 	yx[1] = player->pos_x;
-	a = int_strat2(yx, player->rot + dic, map);
+	int_strat2(yx, player->rot + dic, map);
 	if (map[(int)(player->pos_y - (cos(player->rot + dic) * STEP * 2))]
 			[(int)(player->pos_x)] != '1')
 		return (-1);

@@ -57,9 +57,7 @@ static void	ft_malloc(t_game *game)
 	t_deb		*deb;
 	t_mlx		*mlx;
 	t_player	*player;
-	int			i;
 
-	i = -1;
 	game->deb = 0;
 	game->player = 0;
 	if (!(deb = malloc(sizeof(t_deb))))

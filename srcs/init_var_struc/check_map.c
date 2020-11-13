@@ -58,6 +58,6 @@ t_deb		ft_map_check(t_deb *deb, t_game game)
 		return (*deb);
 	if (game.player->pos_x == -1)
 		ft_error(1, game);
-	 ft_error(20, game);
-	 return (*deb);
+	ft_error(20, game);
+	return (*deb);
 }

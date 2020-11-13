@@ -16,7 +16,6 @@ float	display_2(t_deb *deb, t_player *player, int i)
 {
 	float	a;
 
-
 	if ((deb->objet[i][0] - player->pos_y) >= 0)
 	{
 		a = atanf((deb->objet[i][1] - player->pos_x) /
@@ -55,23 +54,21 @@ void	display_wall(int i, float rot, t_deb *deb, t_player *player)
 	float	angle;
 
 	x = display_wall_init(&dist, i, player, deb);
+	a = display_2(deb, player, i);
 	while (++x != deb->resolution[0])
 	{
 		if (deb->dist[x] > dist)
 		{
-			angle = (rot + M_PI / 6 - (x * (M_PI / 3) / deb->resolution[0]));
-			a = display_2(deb, player, i);
-			a = (a - angle);
-			dist_2 = dist * tanf(a);
-			if (a > M_PI)
-				a -= 2 * M_PI;
-			else if (a < -M_PI)
-				a += 2 * M_PI;
-			if (a < M_PI / 3 && a > (-M_PI / 3))
-			{
+			angle = (rot + M_PI / 8 - (x * (M_PI / 4) / deb->resolution[0]));
+			angle = (a - angle);
+			dist_2 = dist * tanf(angle);
+			if (angle > M_PI)
+				angle -= 2 * M_PI;
+			else if (angle < -M_PI)
+				angle += 2 * M_PI;
+			if (angle < M_PI / 4 && angle > (-M_PI / 4))
 				affiche_objet(x, dist
-						* cos(display_2(deb, player, i) - rot), deb, dist_2);
-				}
+				* cos(display_2(deb, player, i) - rot), deb, dist_2);
 		}
 	}
 }

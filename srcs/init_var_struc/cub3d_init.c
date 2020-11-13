@@ -12,6 +12,19 @@
 
 #include "cub3d.h"
 
+void	size_screen(t_deb *deb, void *ptr, int res[2])
+{
+	int res_screen[2];
+
+	mlx_get_screen_size(ptr, &res_screen[0], &res_screen[1]);
+	if (res_screen[0] < res[0])
+		res[0] = res_screen[0];
+	if (res_screen[1] < res[1])
+		res[1] = res_screen[1];
+	deb->fov_h = atanf((float)((float)(res[1]) / (float)(res[0]))
+		* tan(FOV_W)) * FOV;
+}
+
 int		ft_real(t_deb *deb, char *tab, t_game game)
 {
 	int		i;
@@ -37,6 +50,7 @@ int		ft_real(t_deb *deb, char *tab, t_game game)
 		ft_error(5, game);
 	if (n != 2)
 		ft_error(5, game);
+	size_screen(deb, deb->mlx->mlx_ptr, deb->resolution);
 	return (init_deb_mlx(deb->mlx, deb->resolution, deb));
 }
 
@@ -46,7 +60,8 @@ int		cloro_fc_2(char *tab, int *i, int *a, int *n)
 
 	img_color = ft_atoi(&tab[*i - *a]) * pow(256, 2 - *n);
 	if ((((tab[*i] != '\0' && *n != 2) && tab[*i] != ',')
-			|| ft_atoi(&tab[*i - *a]) > 255))
+			|| ft_atoi(&tab[*i - *a]) > 255) || (tab[*i - *a] == '0'
+			&& (tab[*i - *a + 1] != ',') && tab[*i - *a + 1] != '\0'))
 		return (-2147483647);
 	*n += 1;
 	if (tab[*i] != '\0')

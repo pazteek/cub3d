@@ -25,10 +25,10 @@ static int		udapte_delt(float rot, float delt[2], float n[3], float yx[2])
 static float	init_int_strat(float *pas, float yx[2],
 								t_player *play, t_deb *deb)
 {
-	*pas = (M_PI / 3) / deb->resolution[0];
+	*pas = (FOV_W) / deb->resolution[0];
 	yx[1] = play->pos_x;
 	yx[0] = play->pos_y;
-	return (play->rot + M_PI / 6);
+	return (play->rot + FOV_W / 2);
 }
 
 void			ft_display_windos(t_deb *deb, t_player *player, float rot)
@@ -61,7 +61,7 @@ void			int_strat(t_deb *deb, t_player *player)
 		{
 			deb->dist[i] = sqrt(pow((yx[1] - player->pos_x), 2)
 				+ pow((yx[0] - player->pos_y), 2));
-			affiche_mur(i, (deb->dist[i] * cos(M_PI / 6 - i * pas)), deb, yx);
+			affiche_mur(i, (deb->dist[i] * cos(FOV_W / 2 - i * pas)), deb, yx);
 			rot -= pas;
 			i++;
 			yx[1] = player->pos_x;

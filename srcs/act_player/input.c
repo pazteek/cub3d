@@ -37,7 +37,7 @@ int		ft_move_p(int key, t_game *game)
 		game->deb->mov[4] = '1';
 	if (key == RIGHT_ROT)
 		game->deb->mov[5] = '1';
-	if (key == 53)
+	if (key == KEY_ESC)
 		return (ft_end(1, game));
 	return (0);
 }

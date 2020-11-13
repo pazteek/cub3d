@@ -27,10 +27,8 @@ int		test_textur(char *name, t_game game)
 
 int		ft_textur_wall(t_deb *deb, char *tab, int dirc, t_game game)
 {
-	int n;
 	int i;
 
-	n = 0;
 	i = 2;
 	if (tab[i] != '\0' && tab[i] == ' ')
 	{
